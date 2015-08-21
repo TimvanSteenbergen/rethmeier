@@ -1,0 +1,186 @@
+/* CSS Document */
+
+body
+{
+	font-family:Century gothic, verdana, Helvetica, Arial, sans-serif;
+	font-size:14px;
+	color:#ffffff;
+	background-image:url(gfx/stroke.jpg);
+	background-repeat:repeat-x;
+	background-color:#4b4839;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+a
+{
+	font-size:14px;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+input
+{
+	border:1px solid #384238;
+}
+
+#back
+{
+	top:0px;
+	left:0px;
+	position:absolute;
+	height:2000px;
+	background-color:#ffffff;
+	width:700px;
+	z-index:-1;
+}
+
+#wrapper
+{
+	top:0px;
+	left:50%;
+	margin-left:-530px;
+	position:absolute;
+	background-color:#4b4839;
+	/*background-image:url(gfx/stroke.jpg);
+	background-repeat:repeat-x;*/
+	width:1230px;
+	height:2000px;
+}
+#refresh
+{
+	float:left;
+	top:0px;
+	left:0px;
+	width:730px;
+}
+#right
+{
+	float:left;
+	background-image:url(gfx/stroke.jpg);
+	background-repeat:repeat-x;
+	top:0px;
+	width:500px;
+	height:2000px;
+	background-color:#4b4839;
+}
+
+#left
+{
+	float:left;
+	width:300px;
+	background-color:#fff;
+	height:2000px;
+}
+
+#center
+{
+	float:left;
+	width:430px;
+	*width:430px;
+	_width:350px;
+	height:2000px;
+	background-image:url(gfx/barok.jpg);
+	background-repeat:repeat;
+}
+
+#menu
+{
+	margin-top:60px;
+	margin-left:30px;
+	width:195px;
+}
+
+.menu_item
+{
+	float:right;
+	clear:both;
+	margin-top:15px;
+	cursor:pointer;
+}
+
+#logo
+{
+	float:right;
+	clear:both;
+	margin-bottom:15px;
+	cursor:pointer;
+}
+
+#language
+{
+	float:right;
+	clear:both;
+	margin-top:30px;
+	width:60px;
+}
+
+.language_btn
+{
+	float:right;
+	margin-right:5px;
+	cursor:pointer;
+}
+
+#pictures
+{
+	width:430px;
+	margin-top:60px;
+}
+.pic_left
+{
+	float:left;
+	background-color:#666666;
+	width:120px;
+	height:120px;
+}
+.pic_center
+{
+	background-color:#666666;
+	float:left;
+	height:120px;
+	margin-left:35px;
+	width:120px;
+}
+.pic_right
+{
+	float:right;
+	background-color:#666666;
+	width:120px;
+	height:120px;
+}
+#content
+{
+	width:400px;
+	margin-left:20px;
+	*margin-left:20px;
+	_margin-left:10px;
+	margin-top:40px;
+	float:left;
+}
+.titel
+{
+	color:#4b4839;
+	font-size:22px;
+}
+.text
+{
+	color:#fff;
+	font-size:13px;
+	margin-top:15px;
+}
+.contact_input
+{
+	width:300px;
+}
+.contact_text
+{
+	width:300px;
+	height:130px;
+	border:1px solid #384238;
+}
+.std_link a, a:link, a:visited, a:hover
+{
+	color:#fff;
+	text-decoration:underline;
+}

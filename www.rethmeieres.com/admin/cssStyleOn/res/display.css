@@ -1,0 +1,328 @@
+
+#cssEditor {
+	background-color: #3d5fa3;
+}
+
+#cssEditor * {
+    margin: 0px;
+    padding: 0px;
+	font-family: arial, sans-serif;
+    font-size: 11pt;
+}
+
+#cssEditor h1,#cssEditor  h2,#cssEditor  h3,#cssEditor  h4,#cssEditor  h5,#cssEditor  h6 {
+	clear: both;
+    line-height: 1em;
+    /*      t   r   b   l    */
+    margin: 4px 0px 4px 0px;
+    /*       t   r   b   l   */
+    padding: 4px 4px 2px 2px;
+    /*font-size: medium;
+    font-size: 100%;*/
+    font-size: 11pt;
+    font-weight: bold;
+    color: black;
+    background-color: #d6e7ff;
+    border: 1px solid #3d5fa3;
+    float: none;
+}
+
+#cssEditor #MainTable {
+    height: 100%;
+    width: 780px;
+    margin-left: auto;
+    margin-right: auto;
+    border: none;
+    border-collapse: collapse;
+    text-align: center;
+    vertical-align: middle;
+    background-color: white;
+}
+
+#cssEditor #MainTableHeader {
+	/* 3D5FA3  6578E7 88ccff */
+    background-color: #3d5fa3;
+    color: white;
+    height: 1em;
+    /*       t   r   b   l    */
+    padding: 0px 8px 0px 8px;
+    
+}
+
+#cssEditor #MainTableFooter {
+    background-color: #3d5fa3;
+    color: white;
+    height: 1em;
+    font-size: xx-small;
+    padding: 2px 2px 2px 2px;
+    
+}
+
+#cssEditor #MainTableMenu {
+    background-color: #3d5fa3;
+    color: white;
+    width: 128px;
+    text-align: left;
+    vertical-align: top;
+    /*       t   r   b   l    */
+    padding: 0px 8px 8px 8px;
+    
+}
+
+#cssEditor #MainTableContent {
+    height: 99%;
+    text-align: left;
+    vertical-align: top;
+    /*       t   r   b   l   */
+    padding: 4px 8px 8px 8px;
+    
+}
+
+#cssEditor #MainForm {
+	/*overflow: hidden;*/
+    border: none;
+    margin: 0px;
+    padding: 0px;
+    height: 99%;
+    width: 95%;
+    /*display: inline;*/
+}
+
+#cssEditor #ContentTable {
+    background-color: #eeeeee;
+}
+
+/* CSSMATE */
+#cssEditor td
+{
+	vertical-align: top;
+    font-size: 10pt;
+}
+
+#cssEditor .td_selectColor
+{
+	border: 1px solid Black;
+	cursor: pointer;
+	width: 17px;
+	height: 22px;
+	font-size: 4pt;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+/*
+	width: 11px;
+	min-width: 11px;
+*/
+}
+
+#cssEditor .td_selectWebColor
+{
+	border: 1px solid Black;
+	cursor: pointer;
+	width: 23px;
+	height: 13px;
+	font-size: 4pt;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+/*
+	width: 15px;
+	min-width: 10px;
+*/
+}
+
+#cssEditor .td_SampleText
+{
+	color : #000000;
+	width:350px;
+	height:90px;
+}
+#cssEditor .AusrichtungUnten
+{
+	vertical-align: bottom;
+    font-size: 10pt;
+}
+
+#cssEditor .displayNONE
+{
+	display: none;
+}
+
+#cssEditor .Hand
+{
+	cursor: pointer;
+}
+
+#cssEditor .buttonTable
+{
+    margin: 0px;
+    padding: 0px;
+	background-color: #6b96ce;
+	border-collapse: collapse; 
+	border: solid 2px #adc7ef;
+	font-size: 10pt;
+}
+
+#cssEditor .buttonNormal
+{
+	background-color: #d6e7ff;
+    border-left: 1px solid white;
+    border-top: 1px solid white;
+    border-right: 1px solid #adc7ef;
+    border-bottom: 1px solid #adc7ef;
+	cursor: pointer;
+	color: #0b366e;
+    font-size: 10pt;
+    margin: 2px;
+    padding: 2px;
+}
+
+#cssEditor .buttonHover
+{
+	/* background-color: #d6e7ff;*/
+	background-color: #ffeec2;
+	border-style: solid;
+	border-width: 1px;
+	border-top-color: white;
+	border-left-color: white;
+	border-bottom-color: #adc7ef;
+	border-right-color: #adc7ef;
+	cursor: pointer;
+	text-decoration: underline;
+	color: #0b366e;
+    font-size: 10pt;
+    margin: 2px;
+    padding: 2px;
+}
+
+#cssEditor .buttonPressed
+{
+	background-color: #adc7ef;
+	font-weight: bold;
+	border-style: solid;
+	border-width: 1px;
+	border-top-color: #adc7ef;
+	border-left-color: #adc7ef;
+	border-bottom-color: white;
+	border-right-color: white;
+	cursor: pointer;
+	color: black;
+	/* font-weight: bold; */
+    font-size: 10pt;
+    margin: 2px;
+    padding: 2px;
+}
+
+#cssEditor .buttonPressedHover
+{
+	/* background-color: #d6e7ff;*/
+	background-color: #ffeec2;
+	font-weight: bold;
+	border-style: solid;
+	border-width: 1px;
+	border-top-color: white;
+	border-left-color: white;
+	border-bottom-color: #adc7ef;
+	border-right-color: #adc7ef;
+	cursor: pointer;
+	text-decoration: none;
+	color: black;
+	/* font-weight: bold; */
+    font-size: 10pt;
+    margin: 2px;
+    padding: 2px;
+}
+
+#cssEditor table.thinDarkblueBorders
+{
+	/*border: #3D5FA3 1px solid;*/
+}
+
+#cssEditor .csseditor
+{
+	background-color: #f1f7fe;
+	/*border: #3D5FA3 1px solid;*/
+	border-collapse: separate;
+    /*       t   r   b   l    */
+	padding: 0px 4px 4px 4px;
+    /*float: left;*/
+    /*width: 600px;*/
+}
+
+#cssEditor #tdedit
+{
+	border: #3D5FA3 1px solid;
+	width: 390px; 
+	height: 360px;
+}
+
+#cssEditor #tdselect
+{
+	border: #3D5FA3 1px solid;
+	width: 340px;
+	height: 360px;
+}
+
+#cssEditor #tdpreview
+{
+	border: #3D5FA3 1px solid;
+	width: 390px; 
+	height:100px;
+	overflow: hidden;
+}
+
+#cssEditor #tdcode
+{
+	border: #3D5FA3 1px solid;
+	width: 340px; 
+	height: 100px;
+	overflow: hidden;
+	padding: 0px 0px 0px 0px;
+}
+
+#cssEditor th.csseditor
+{
+    /*       t   r   b   l    */
+	border: #3D5FA3 1px solid;
+	padding: 0px 4px 0px 4px;
+	background-color: #adc7ef;
+	font-weight: bold;
+	border-collapse: collapse;
+    font-size: 10pt;
+}
+
+#cssEditor #CodeTextarea
+{
+    /*       t   r   b   l    */
+    margin: 0px 0px 0px 0px;
+
+    border: #3D5FA3 0px solid;
+    
+	width: 348px;
+	height: 100%;
+	color: #000000;
+	cursor: text;
+	overflow: auto;
+}
+
+#cssEditor .help
+{
+	border-top:1px solid black; 
+	border-left:1px solid black; 
+	border-bottom:1px solid black;
+	border-right:1px solid black; 
+	padding: 8px;
+	background-color: #FFFFE1;
+	width: 320px;
+}
+
+#cssEditor .code
+{
+    font-family: courier, monospace;
+}
+
+#cssEditor input.samplecode
+{
+    border: 1px solid navy;
+    font-family: courier, monospace;
+    /*       t   r   b   l    */
+    padding: 2px 2px 2px 2px;
+}
