@@ -1,5 +1,5 @@
 <?
-session_start();
+//session_start();
 include_once "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/functions/selection.php";
 //include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/translation/inc_translation.php";
 include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/config/inc_language.php";

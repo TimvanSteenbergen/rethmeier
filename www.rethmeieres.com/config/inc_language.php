@@ -1,5 +1,5 @@
 <?
-session_start();
+//session_start();
 
 if($_GET['language'])
 {
