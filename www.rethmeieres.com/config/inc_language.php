@@ -1,7 +1,9 @@
 <?
-//session_start();
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
 
-if($_GET['language'])
+if(isset($_GET['language']))
 {
 	$_SESSION['language'] = $_GET['language'];
 }

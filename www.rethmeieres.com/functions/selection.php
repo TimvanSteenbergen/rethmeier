@@ -1,13 +1,14 @@
 <?
 function selection($name, $default="false")
 {
-	if(!$_GET['p'] && $default == "true")
-	{
-		return "selected_";
-	}
-	elseif($_GET['p'] == $name)
-	{
-		return "selected_";
-	}
+	return "selected_";
+//	if(!isset($_GET['p']) && $default == "true")
+//	{
+//		return "selected_";
+//	}
+//	elseif($_GET['p'] == $name)
+//	{
+//		return "selected_";
+//	}
 }
 ?>
