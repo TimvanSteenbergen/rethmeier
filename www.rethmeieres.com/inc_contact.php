@@ -1,7 +1,7 @@
 <?
 $string = "SELECT * FROM `tbl_contents` WHERE `content_id` = '24'";
-$query = mysql_query($string) or die(mysql_error());
-$result = mysql_fetch_assoc($query) or die(mysql_error());
+$query = mysqli_query($con, $string) or die(mysqli_error());
+$result = mysqli_fetch_assoc($query) or die(mysqli_error());
 
 $taal = array();
 $taal['nl']['name'] = "Naam";
@@ -92,7 +92,7 @@ if($fout == false && isset($_POST['name']) && isset($_POST['email']) && isset($_
 	<strong>Bericht:</strong><br/>
 	'.$message;
 	
-	$string = array("�","�","è","é");
+	$string = array("�","�","è","é");
 	$replace = array("&egrave;","&eacute;","&egrave;","&eacute;");
 	$mail_body_rep = str_replace($string,$replace,$mail_body);
 

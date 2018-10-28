@@ -2,10 +2,10 @@
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
-include_once "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/functions/selection.php";
+include_once "../functions/selection.php";
 //include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/translation/inc_translation.php";
-include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/config/inc_language.php";
-include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/config/inc_config.php";
+include "../config/inc_language.php";
+include "../config/inc_config.php";
 ?>
 
 <div id="left">
@@ -15,7 +15,7 @@ include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/confi
 			<img src="gfx/logo.jpg" border="0" />
 		</div>
 
-        <?php echo 'sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss'; $language = (isset($_SESSION['language'])?$_SESSION['language']:'nl');echo $language; ?>
+        <?php $language = (isset($_SESSION['language'])?$_SESSION['language']:'nl');echo $language; ?>
 		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=home');"><img src="gfx/buttons/<?=selection("home", "true").$language?>_home.jpg" border="0" /></div>
 		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=werkgebied');"><img src="gfx/buttons/<?=selection("werkgebied").$language?>_werkgebied.jpg" border="0" /></div>
 		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=werkwijze');"><img src="gfx/buttons/<?=selection("werkwijze").$language?>_werkwijze.jpg" border="0" /></div>
@@ -23,6 +23,7 @@ include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/confi
 		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=opdrachtgevers');"><img src="gfx/buttons/<?=selection("opdrachtgevers").$language?>_opdrachtgevers.jpg" border="0" /></div>
 		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=referenties');"><img src="gfx/buttons/<?=selection("referenties").$language?>_referenties.jpg" border="0" /></div>
 		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=biografie');"><img src="gfx/buttons/<?=selection("biografie").$language?>_biografie.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=pers');"><img src="gfx/buttons/<?=selection("pers").$language?>_pers.jpg" border="0" /></div>
 		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=contact');"><img src="gfx/buttons/<?=selection("contact").$language?>_contact.jpg" border="0" /></div>
 	
 		<div id="language">
@@ -30,6 +31,7 @@ include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/confi
 			<div class="language_btn" onclick="location.href='index.php?language=en';"><img src="gfx/en.jpg" border="0" /></div>
 		</div>
 
+<div class="menu_item"><a href="Privacy Statement Rethmeier Executive Search BV 16 mei 2018.pdf" target="_parent" style="color: black; text-decoration: none; font-size: 18px;">Privacy statement</a></div>
 	</div>
 </div>
 
@@ -37,10 +39,28 @@ include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/confi
 	<?
 		if(!isset($_GET['p']))
 		{
-		//	$_GET['p'] = "home";
-			include 'inc_home.php';
+			include '../inc_home.php';
+//Bugfix: Omdat deze include niet meer inc_home.php toont, is hier een kopie van inc_home.php neergezet.
+?>
+<?
+$string = "SELECT * FROM `tbl_contents` WHERE `content_id` = '2'";
+$query = mysqli_query($con, $string) or die(mysqli_error());
+$result = mysqli_fetch_assoc($query) or die(mysqli_error());
+?>
+
+<div id="pictures">
+	<div class="pic_left"><img src="images/<?=$result['pic_left']?>" border="0" width="120" height="120" /></div>
+	<div class="pic_center"><img src="images/<?=$result['pic_center']?>" border="0" width="120" height="120" /></div>
+	<div class="pic_right"><img src="images/<?=$result['pic_right']?>" border="0" width="120" height="120" /></div>
+</div>
+<div id="content">
+	<div class="titel"><?=$result['content_title_'.$_SESSION['language']]?></div>
+	<div class="text"><?=$result['content_'.$_SESSION['language']]?></div>
+</div><?php
+//Einde Bugfix: Omdat deze include niet meer inc_home.php toont, is hier een kopie van inc_home.php neergezet.
 		}else{
-		include '/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/inc_'.$_GET['p'].'.php';
+			// echo('p is: ' . $_GET['p']);
+			include '../inc_'.$_GET['p'].'.php';
 		}
 	?>
 </div>

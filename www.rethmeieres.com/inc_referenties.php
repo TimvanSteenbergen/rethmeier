@@ -1,7 +1,7 @@
 <?
 $string = "SELECT * FROM `tbl_contents` WHERE `content_id` = '27'";
-$query = mysql_query($string) or die(mysql_error());
-$result = mysql_fetch_assoc($query) or die(mysql_error());
+$query = mysqli_query($con, $string) or die(mysqli_error());
+$result = mysqli_fetch_assoc($query) or die(mysqli_error());
 ?>
 
 <div id="pictures">

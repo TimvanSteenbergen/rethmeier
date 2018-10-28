@@ -1,5 +1,5 @@
 <?
-$string = "SELECT * FROM `tbl_contents` WHERE `content_id` = '26'";
+$string = "SELECT * FROM `tbl_contents` WHERE `content_id` = '28'";
 $query = mysqli_query($con, $string) or die(mysqli_error());
 $result = mysqli_fetch_assoc($query) or die(mysqli_error());
 ?>

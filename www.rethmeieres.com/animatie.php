@@ -1,6 +1,6 @@
 <?
 include('config/inc_config.php');
-$product = mysql_fetch_array(mysql_query('SELECT * FROM teksten WHERE id = 1'));
+$product = mysqli_fetch_array(mysqli_query($con, 'SELECT * FROM teksten WHERE id = 1'));
 
 if($_GET['language']=='en')
 {

@@ -1,11 +1,11 @@
-<?
+<?php
 session_start();
 
 //standaard taal is:
 $default_language = "nl";
 
 include "functions/selection.php";
-//include "translation/inc_translation.php";
+include "translation/inc_translation.php";
 include "config/inc_language.php";
 include "config/inc_config.php";
 ?>
@@ -27,7 +27,7 @@ include "config/inc_config.php";
 <div id="wrapper">
 	<div id="refresh">
 		<?
-			include '/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/ajax/inc_refresh.php';
+			include 'ajax/inc_refresh.php';
 		?>
 	</div>
 	<div id="right">
