@@ -1,4 +1,4 @@
-<?
+<?php
 function selection($name, $default="false")
 {
 	return "selected_";

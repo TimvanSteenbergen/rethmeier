@@ -35,7 +35,7 @@ if ($_POST['save'] == '1') {
 
 		$sql .= " WHERE CONTENT_ID = ".$_POST['id'];
 
-		$result = mysql_query($sql)or die(mysql_error()); 
+		$result = mysqli_query($sql)or die(mysqli_error()); 
 
 	 	$to = 'index.php?page=cmsartikelen&id='.$_POST['id'];
 
@@ -51,9 +51,9 @@ if ($_POST['save'] == '1') {
 
 					('".$pic_left."','".$pic_center."','".$pic_right."','".$content_title_nl."','".$content_title_en."','".$content_nl."','".$content_en."','".$content_name."','".$parent."','1','".date("Y-m-d H:i:s")."','F','T')";
 
-		$result = @mysql_query($sql) or die(mysql_error()); 
+		$result = @mysqli_query($sql) or die(mysqli_error()); 
 
-	 	$to = 'index.php?page=cmsartikelen&id='.mysql_insert_id();
+	 	$to = 'index.php?page=cmsartikelen&id='.mysqli_insert_id();
 
 	}
 
@@ -76,7 +76,7 @@ if ($_GET['act']) {
 
 	$query = "UPDATE tbl_contents SET content_visible = '".$act."' WHERE CONTENT_ID = ".$_GET['id'];
 
-	mysql_query($query);
+	mysqli_query($query);
 
 	//Header("Location:index.php?page=);
 
@@ -258,9 +258,9 @@ function isProduct($id = 0,$parent = 0) {
 
 		$query = "SELECT b.content_parentid FROM tbl_contents a INNER JOIN tbl_contents b ON b.CONTENT_ID = a.content_parentid WHERE a.CONTENT_ID = ".$id." AND b.content_parentid = 9";
 
-		$res = mysql_query($query);
+		$res = mysqli_query($query);
 
-		if (mysql_num_rows($res)!=0) {
+		if (mysqli_num_rows($res)!=0) {
 
 			$return = true;
 
@@ -272,9 +272,9 @@ function isProduct($id = 0,$parent = 0) {
 
 		$query = "SELECT content_parentid FROM tbl_contents WHERE CONTENT_ID = '".$parent."' AND content_parentid = 9";
 
-		$res = mysql_query($query);
+		$res = mysqli_query($query);
 
-		if (mysql_num_rows($res)!=0) {
+		if (mysqli_num_rows($res)!=0) {
 
 			$return = true;
 
@@ -314,7 +314,7 @@ $sql = "SELECT *, DATE_FORMAT(content_archive_date, '%d-%m-%Y') AS content_archi
 
 	   WHERE CONTENT_ID = ".$_GET['id'];
 
-$result = mysql_query($sql); 
+$result = mysqli_query($sql); 
 
  
 
@@ -345,27 +345,27 @@ $processed = false;
 
     <table border="0" width="100%" cellspacing="0" cellpadding="2">
 
-    <span class="pageHeading">Content management editor</span> <a href="index.php?page=cmsartikelen<? if ($_GET['id']) { echo "&id=".$_GET['id']; } ?>">terug naar artikelen</a><BR><BR> 
+    <span class="pageHeading">Content management editor</span> <a href="index.php?page=cmsartikelen<?php if ($_GET['id']) { echo "&id=".$_GET['id']; } ?>">terug naar artikelen</a><BR><BR> 
 
-		<form method="POST" action="<?=$_PHP_SELF;?>">
+		<form method="POST" action="<?php echo $_PHP_SELF;?>">
 
-		<? 
+		<?php 
 
 		if ($_GET['id']) {
 
-			$row = mysql_fetch_array($result);
+			$row = mysqli_fetch_array($result);
 
 		}
 
 		?>
 
-			<input type="hidden" name="id" value="<? echo $_GET["id"]; ?>">
+			<input type="hidden" name="id" value="<?php echo $_GET["id"]; ?>">
 
-			<input type=hidden name=type value="<? echo $_GET["type"]; ?>">
+			<input type=hidden name=type value="<?php echo $_GET["type"]; ?>">
 
-			<input type=hidden name=parent value="<? echo $_GET["parent"]; ?>">
+			<input type=hidden name=parent value="<?php echo $_GET["parent"]; ?>">
 
-			<input type=hidden name=titel value="<? echo $row['content_name']; ?>">
+			<input type=hidden name=titel value="<?php echo $row['content_name']; ?>">
 
 			
 
@@ -377,7 +377,7 @@ $processed = false;
 
 				<TD width="176"><div class="menuBoxContent">Pagina</div></TD>
 
-				<TD><div class="menuBoxContent"><input type="text" name="content_name" size="60" value="<? echo $row['content_name']; ?>"></div></td>
+				<TD><div class="menuBoxContent"><input type="text" name="content_name" size="60" value="<?php echo $row['content_name']; ?>"></div></td>
 
 			</tr>
 
@@ -487,7 +487,7 @@ foreach ($files as $file) {
 
 				<TD width="176"><div class="menuBoxContent">Titel NL</div></TD>
 
-				<TD><div class="menuBoxContent"><input type="text" name="content_title_nl" size="60" value="<? echo $row['content_title_nl']; ?>"></div></td>
+				<TD><div class="menuBoxContent"><input type="text" name="content_title_nl" size="60" value="<?php echo $row['content_title_nl']; ?>"></div></td>
 
 			</tr>
 
@@ -531,7 +531,7 @@ foreach ($files as $file) {
 
 				<TD width="176"><div class="menuBoxContent">Titel EN</div></TD>
 
-				<TD><div class="menuBoxContent"><input type="text" name="content_title_en" size="60" value="<? echo $row['content_title_en']; ?>"></div></td>
+				<TD><div class="menuBoxContent"><input type="text" name="content_title_en" size="60" value="<?php echo $row['content_title_en']; ?>"></div></td>
 
 			</tr>
 			

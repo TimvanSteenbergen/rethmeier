@@ -11,19 +11,19 @@ if (!isset($_GET['orderby']) || $_GET['orderby'] == ""){
 }
 $query = "SELECT * FROM admin_users WHERE USER_ARCHIVE = 0 ORDER BY USER_NAME";
 
-$exec = mysql_query($query);
-$totaalAantal = mysql_num_rows($exec);
+$exec = mysqli_query($query);
+$totaalAantal = mysqli_num_rows($exec);
 echo "<span class=\"pageHeading\">Administratie gebruikers (".$totaalAantal.")</span><BR><BR>"; 
 echo "<a href=index.php?page=newadminuser>Voeg gebruiker toe</a>";
 echo "<BR><BR>";
 
 $query = "SELECT * FROM admin_users WHERE USER_ARCHIVE = 0 ORDER BY USER_NAME";
 
-$exec = mysql_query($query);
+$exec = mysqli_query($query);
 echo "<TABLE cellpadding=2 cellspacing=0 style=\"font-family:Verdana\" width=100%>";
 echo "<TR class=\"dataTableHeadingRow\"><TD class=\"dataTableHeadingContent\"><a href=adminusers.php?orderby=USER_NAME&order=".$order."&search=".$_GET['search']."&page=".$_GET['page']."&recs=".$_GET['recs']." style=\"font-weight:bold;color:white\">Naam</a></TD><TD class=\"dataTableHeadingContent\"><a href=adminusers.php?orderby=USER_LOGIN&order=".$order."&search=".$_GET['search']."&page=".$_GET['page']."&recs=".$_GET['recs']." style=\"font-weight:bold;color:white\">Loginnaam</A></TD><TD class=\"dataTableHeadingContent\"><a href=adminusers.php?orderby=USER_EMAIL&order=".$order."&search=".$_GET['search']."&page=".$_GET['page']."&recs=".$_GET['recs']." style=\"font-weight:bold;color:white\">E-mail</a></TD><TD class=\"dataTableHeadingContent\"><a href=adminusers.php?orderby=USER_ACTIVE&order=".$order."&search=".$_GET['search']."&page=".$_GET['page']."&recs=".$_GET['recs']." style=\"font-weight:bold;color:white\">Actief</a></TD><TD class=\"dataTableHeadingContent\">&nbsp</TD></TR>";
-if (mysql_num_rows($exec)>0){
-	while ($row = mysql_fetch_array($exec)){
+if (mysqli_num_rows($exec)>0){
+	while ($row = mysqli_fetch_array($exec)){
 		extract($row);
 		if ($USER_ACTIVE == '1') {
 			$tabgreen = "<img src=./images/green_on.bmp border=0>";

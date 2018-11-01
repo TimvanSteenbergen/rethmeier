@@ -144,20 +144,20 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     <meta http-equiv="content-style-type" content="text/css" />
     <meta name="robots" content="none" />
 
-    <link rel="stylesheet" type="text/css" href="<?=$cssStyleOn['WEBROOT_RES_PATH']?>/display.css" />
-    <script type="text/javascript" src="<?=$cssStyleOn['WEBROOT_RES_PATH']?>/cssedit.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $cssStyleOn['WEBROOT_RES_PATH']?>/display.css" />
+    <script type="text/javascript" src="<?php echo $cssStyleOn['WEBROOT_RES_PATH']?>/cssedit.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="<?=$cssStyleOn['WEBROOT_RES_PATH']?>/layout.css" />
-    <link rel="shortcut icon" href="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/favicon.ico" type="image/x-icon" />
-    <script type="text/javascript" src="<?=$cssStyleOn['WEBROOT_RES_PATH']?>/cssmanager.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $cssStyleOn['WEBROOT_RES_PATH']?>/layout.css" />
+    <link rel="shortcut icon" href="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/favicon.ico" type="image/x-icon" />
+    <script type="text/javascript" src="<?php echo $cssStyleOn['WEBROOT_RES_PATH']?>/cssmanager.js"></script>
     <script type="text/javascript">
 
-var help_icon = new Image(); help_icon.src = '<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon_help.png';
-var normal_icon = new Image(); normal_icon.src = '<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon.png';
+var help_icon = new Image(); help_icon.src = '<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon_help.png';
+var normal_icon = new Image(); normal_icon.src = '<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon.png';
 
-<? layoutOutScripts() ?>
+<?php layoutOutScripts() ?>
 
-<? browserReloadOutScripts() ?>
+<?php browserReloadOutScripts() ?>
 
 function loadStyles()
 	{
@@ -172,7 +172,7 @@ function loadStyles()
 		$cssClass=substr($css_tag,$pos+1);
 		$cssStyle=get_magic_quotes_gpc()?stripslashes($css_style):$css_style;
 ?>
-	appendCSSEntry('<?=$cssTag?>','<?=$cssClass?>','<?=addcslashes($cssStyle,"'")?>');
+	appendCSSEntry('<?php echo $cssTag?>','<?php echo $cssClass?>','<?php echo addcslashes($cssStyle,"'")?>');
 <?
 		}
 ?>
@@ -183,21 +183,21 @@ function loadStyles()
   <body onload="CSSManagerLoad()">
     <div id="mainContainer">
       <div id="cssManager">
-      <form id="mainForm" action="<?=$cssStyleOn['REQUEST_URL']?>" method="post" class="MainForm" enctype="multipart/form-data">
+      <form id="mainForm" action="<?php echo $cssStyleOn['REQUEST_URL']?>" method="post" class="MainForm" enctype="multipart/form-data">
         <p>
           &nbsp;
           <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
           <input type="hidden" id="CSSEditTargetID" value="" />
         </p>
         <p id="banner">
-          <?=$cssStyleOn['STRINGS']['TEXT_BANNER_DISCLAIMER']?>
+          <?php echo $cssStyleOn['STRINGS']['TEXT_BANNER_DISCLAIMER']?>
         <p>&nbsp;</p>
 
         <div id="header">
-          <a href="http://cssStyleOn.c0n.de/help.php" target="_blank"><img style="position: relative; float: right; border: 0px;" src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon.png" alt="online help for cssStyleOn" title="open online help for cssStyleOn in new window" id="helpIcon" onmouseover="document.getElementById('helpIcon').src='<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon_help.png';" onmouseout="document.getElementById('helpIcon').src='<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon.png';" /></a>
+          <a href="http://cssStyleOn.c0n.de/help.php" target="_blank"><img style="position: relative; float: right; border: 0px;" src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon.png" alt="online help for cssStyleOn" title="open online help for cssStyleOn in new window" id="helpIcon" onmouseover="document.getElementById('helpIcon').src='<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon_help.png';" onmouseout="document.getElementById('helpIcon').src='<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/falter_icon.png';" /></a>
           <h1 id="titleHeader">
             &nbsp;<a href="http://cssStyleOn.c0n.de" target="_blank">cssStyleOn</a> : CSS Manager &nbsp;
-            <input type="submit" name="save" value="save on server"<?=$cssStyleOn['PERMISSIONS']['SAVE']?"":" disabled=\"disabled\""?> />
+            <input type="submit" name="save" value="save on server"<?php echo $cssStyleOn['PERMISSIONS']['SAVE']?"":" disabled=\"disabled\""?> />
           </h1>
           <div class="clearer"></div>
         </div>
@@ -205,13 +205,13 @@ function loadStyles()
         <div class="clearer"></div>
 
         <div id="buttonContainer">
-<? layoutOutButtons('cssmanager') ?>
+<?php layoutOutButtons('cssmanager') ?>
         </div>
 
         <div class="clearer"></div>
 
         <div id="tabContainer">
-<? layoutOutTabs('cssmanager'); ?>
+<?php layoutOutTabs('cssmanager'); ?>
         </div>
 
         <div class="clearer"></div>
@@ -219,7 +219,7 @@ function loadStyles()
 
       </form>
       </div>
-<!--        <iframe id="cssEditor" name="cssEditor" width="787" height="600" <?/*style="display: none;"*/?> src="<?=$cssStyleOn['REQUEST_URL']?>show_editor=preload"></iframe>-->
+<!--        <iframe id="cssEditor" name="cssEditor" width="787" height="600" <?/*style="display: none;"*/?> src="<?php echo $cssStyleOn['REQUEST_URL']?>show_editor=preload"></iframe>-->
 
 
 <div id="cssEditor" style="display: none;">
@@ -3352,7 +3352,7 @@ function loadStyles()
 			</tr>
 			<tr>
 				<td colspan="2">
-				<div class="help"><img src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/addinfoband.gif"
+				<div class="help"><img src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/addinfoband.gif"
 					style="width: 16px; height: 16px; border: 0" alt="Tip" /> Click on
 				a font in one of the list boxes to see a preview underneath the list
 				boxes. Doubleclick adds the font to the list in the text box.</div>
@@ -3470,18 +3470,18 @@ function loadStyles()
 		<table style="display: none; width: 100%" class="thinDarkblueBorders"
 			id="SampleImagetable">
 			<tr>
-				<td class="Hand" onclick="selectBulledImage('<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_1.gif')">
-				<img alt="" src="<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_1.gif"
+				<td class="Hand" onclick="selectBulledImage('<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_1.gif')">
+				<img alt="" src="<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_1.gif"
 					style="width: 16px; height: 16px; border: 0" /> Sample 1</td>
 			</tr>
 			<tr>
-				<td class="Hand" onclick="selectBulledImage('<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_2.gif')">
-				<img alt="" src="<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_2.gif"
+				<td class="Hand" onclick="selectBulledImage('<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_2.gif')">
+				<img alt="" src="<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_2.gif"
 					style="width: 16px; height: 16px; border: 0" /> Sample 2</td>
 			</tr>
 			<tr>
-				<td class="Hand" onclick="selectBulledImage('<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_3.gif')">
-				<img alt="" src="<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_3.gif"
+				<td class="Hand" onclick="selectBulledImage('<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_3.gif')">
+				<img alt="" src="<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_3.gif"
 					style="width: 16px; height: 16px; border: 0" /> Sample 3</td>
 			</tr>
 		</table>
@@ -3506,18 +3506,18 @@ function loadStyles()
 				molestie a, pulvinar et, mi. Nullam nibh sem, sollicitudin at,
 				congue id, malesuada non, lacus.</div>
 				<img alt="" id="SampleImageNormal"
-					src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageNormal.gif" style="display: none;"
+					src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageNormal.gif" style="display: none;"
 					/>
 					<img alt="" id="SampleImageRelativ"
-					src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageRelativ.gif" style="display: none;"
+					src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageRelativ.gif" style="display: none;"
 					/>
 					<img alt="" id="SampleImageAbsolute"
-					src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageAbsolute.gif" style="display: none;"
+					src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageAbsolute.gif" style="display: none;"
 					/>
 					<img alt="" id="SampleImagePadding"
-					src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/PaddingAll.gif" style="display: none;" />
+					src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/PaddingAll.gif" style="display: none;" />
 					<img
-					alt="" id="SampleImageMargin" src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/MarginAll.gif"
+					alt="" id="SampleImageMargin" src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/MarginAll.gif"
 					style="display: none;" />
 
 <!--
@@ -3536,7 +3536,7 @@ function loadStyles()
 -->
 
 				<textarea id="CodeTextarea" rows="6" cols="50" onchange="CSSEditReadoutCode()">
-x { <?=get_magic_quotes_gpc()?stripslashes($_REQUEST['css_code']):$_REQUEST['css_code']?> }
+x { <?php echo get_magic_quotes_gpc()?stripslashes($_REQUEST['css_code']):$_REQUEST['css_code']?> }
 				</textarea>
 <!--
                 </td>

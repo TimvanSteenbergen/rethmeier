@@ -1,4 +1,5 @@
-<?
+<?php
+include "../config/inc_config.php";
 $string = "SELECT * FROM `tbl_contents` WHERE `content_id` = '24'";
 $query = mysqli_query($con, $string) or die(mysqli_error());
 $result = mysqli_fetch_assoc($query) or die(mysqli_error());
@@ -105,19 +106,19 @@ if($fout == false && isset($_POST['name']) && isset($_POST['email']) && isset($_
 ?>
 
 <div id="pictures">
-	<div class="pic_left"><img src="images/<?=$result['pic_left']?>" border="0" width="120" height="120" /></div>
-	<div class="pic_center"><img src="images/<?=$result['pic_center']?>" border="0" width="120" height="120" /></div>
-	<div class="pic_right"><img src="images/<?=$result['pic_right']?>" border="0" width="120" height="120" /></div>
+	<div class="pic_left"><img src="images/<?php echo $result['pic_left']?>" border="0" width="120" height="120" /></div>
+	<div class="pic_center"><img src="images/<?php echo $result['pic_center']?>" border="0" width="120" height="120" /></div>
+	<div class="pic_right"><img src="images/<?php echo $result['pic_right']?>" border="0" width="120" height="120" /></div>
 </div>
 <div id="content">
-	<div class="titel"><?=$result['content_title_'.$_SESSION['language']]?></div>
-	<div class="text" style="float:left; width:150px;"><?=$result['content_'.$_SESSION['language']]?>
-	<br/><a href="route_<?=$_SESSION['language']?>.pdf" class="std_link" style="text-decoration:underline;"><?=$taal[$_SESSION['language']]['route']?></a>
+	<div class="titel"><?php echo $result['content_title_'.$_SESSION['language']]?></div>
+	<div class="text" style="float:left; width:150px;"><?php echo $result['content_'.$_SESSION['language']]?>
+	<br/><a href="route_<?php echo $_SESSION['language']?>.pdf" class="std_link" style="text-decoration:underline;"><?php echo $taal[$_SESSION['language']]['route']?></a>
 	</div>
 </div>
 <div id="content" style="margin-top:20px;">
 
-<?
+<?php
 if($fout == false && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['subject']) && isset($_POST['message']))
 {
 	echo '<div class="text">'.$taal[$_SESSION['language']]['send'].'</div>';
@@ -133,34 +134,34 @@ else
 <table>
 	<tr>
 		<td>
-			<input type="text" name="name" class="contact_input" value="<?=$name?>" <? echo ($name == $taal[$_SESSION['language']]['name']) ? 'onclick="this.value=\'\';"' : ''; ?> />
+			<input type="text" name="name" class="contact_input" value="<?php echo $name?>" <?php echo ($name == $taal[$_SESSION['language']]['name']) ? 'onclick="this.value=\'\';"' : ''; ?> />
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<input type="text" name="email" class="contact_input" value="<?=$email?>" <? echo ($email == $taal[$_SESSION['language']]['email']) ? 'onclick="this.value=\'\';"' : ''; ?> />
+			<input type="text" name="email" class="contact_input" value="<?php echo $email?>" <?php echo ($email == $taal[$_SESSION['language']]['email']) ? 'onclick="this.value=\'\';"' : ''; ?> />
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<input type="text" name="subject" class="contact_input" value="<?=$subject?>" <? echo ($subject == $taal[$_SESSION['language']]['subject']) ? 'onclick="this.value=\'\';"' : ''; ?> />
+			<input type="text" name="subject" class="contact_input" value="<?php echo $subject?>" <?php echo ($subject == $taal[$_SESSION['language']]['subject']) ? 'onclick="this.value=\'\';"' : ''; ?> />
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<textarea name="message" class="contact_text"><?=$message?></textarea>
+			<textarea name="message" class="contact_text"><?php echo $message?></textarea>
 		</td>
 	</tr>
 	<tr>
 		<td>
-			<input type="submit" value="<?=$taal[$_SESSION['language']]['submit_value']?>" />
+			<input type="submit" value="<?php echo $taal[$_SESSION['language']]['submit_value']?>" />
 		</td>
 	</tr>
 
 </table>
 </form>
 
-<?
+<?php
 }
 ?>
 </div>

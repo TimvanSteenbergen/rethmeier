@@ -787,7 +787,7 @@
                  'zend' => (function_exists('zend_version') ? zend_version() : ''),
                  'db_server' => DB_SERVER,
                  'db_ip' => gethostbyname(DB_SERVER),
-                 'db_version' => 'MySQL ' . (function_exists('mysql_get_server_info') ? mysql_get_server_info() : ''),
+                 'db_version' => 'MySQL ' . (function_exists('mysqli_get_server_info') ? mysqli_get_server_info() : ''),
                  'db_date' => tep_datetime_short($db['datetime']));
   }
 

@@ -43,20 +43,20 @@ function cssedit_layout()
     </TITLE>
     <META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
     <META NAME="robots" CONTENT="none">
-    <LINK REL="stylesheet" TYPE="text/css" HREF="<?=$cssStyleOn['WEBROOT_RES_PATH']?>/display.css">
+    <LINK REL="stylesheet" TYPE="text/css" HREF="<?php echo $cssStyleOn['WEBROOT_RES_PATH']?>/display.css">
     </LINK>
-    <SCRIPT LANGUAGE="javascript" TYPE="text/javascript" SRC="<?=$cssStyleOn['WEBROOT_RES_PATH']?>/cssedit.js">
+    <SCRIPT LANGUAGE="javascript" TYPE="text/javascript" SRC="<?php echo $cssStyleOn['WEBROOT_RES_PATH']?>/cssedit.js">
     </SCRIPT>
   </HEAD>
   <BODY ONLOAD="BodyLoad()">
     <FORM ID="MainForm" ACTION="" CLASS="MainForm">
-      <input type="hidden" id="CSSEditTargetID" value="<?=$_REQUEST['target']?>">
+      <input type="hidden" id="CSSEditTargetID" value="<?php echo $_REQUEST['target']?>">
       <TABLE ID="MainTable">
         <TBODY>
           <TR>
             <TD ID="MainTableContent">
               <H1 ID="PageTitleHeader">
-                <a href="http://cssStyleOn.c0n.de" target="_blank">cssStyleOn</a> : CSS Editor : <?=$_REQUEST['show_editor']?> &nbsp;<input type="button" value="done" onClick="javascript: CSSEditReturn(); return true" /> <input type="button" value="cancel" onClick="javascript: CSSEditCancel(); return true" />
+                <a href="http://cssStyleOn.c0n.de" target="_blank">cssStyleOn</a> : CSS Editor : <?php echo $_REQUEST['show_editor']?> &nbsp;<input type="button" value="done" onClick="javascript: CSSEditReturn(); return true" /> <input type="button" value="cancel" onClick="javascript: CSSEditCancel(); return true" />
               </H1>
 
 
@@ -3179,7 +3179,7 @@ function cssedit_layout()
 			</tr>
 			<tr>
 				<td colspan="2">
-				<div class="help"><img src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/addinfoband.gif"
+				<div class="help"><img src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/addinfoband.gif"
 					style="width: 16px; height: 16px; border: 0" alt="Tip" /> Click on
 				a font in one of the list boxes to see a preview underneath the list
 				boxes. Doubleclick adds the font to the list in the text box.</div>
@@ -3297,18 +3297,18 @@ function cssedit_layout()
 		<table style="display: none; width: 100%" class="thinDarkblueBorders"
 			id="SampleImagetable">
 			<tr>
-				<td class="Hand" onclick="selectBulledImage('<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_1.gif')">
-				<img alt="" src="<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_1.gif"
+				<td class="Hand" onclick="selectBulledImage('<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_1.gif')">
+				<img alt="" src="<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_1.gif"
 					style="width: 16px; height: 16px; border: 0" /> Sample 1</td>
 			</tr>
 			<tr>
-				<td class="Hand" onclick="selectBulledImage('<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_2.gif')">
-				<img alt="" src="<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_2.gif"
+				<td class="Hand" onclick="selectBulledImage('<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_2.gif')">
+				<img alt="" src="<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_2.gif"
 					style="width: 16px; height: 16px; border: 0" /> Sample 2</td>
 			</tr>
 			<tr>
-				<td class="Hand" onclick="selectBulledImage('<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_3.gif')">
-				<img alt="" src="<?=$cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_3.gif"
+				<td class="Hand" onclick="selectBulledImage('<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_3.gif')">
+				<img alt="" src="<?php echo $cssStyleOn['WEBROOT_SAMPLE_PATH']?>/Sample_3.gif"
 					style="width: 16px; height: 16px; border: 0" /> Sample 3</td>
 			</tr>
 		</table>
@@ -3333,18 +3333,18 @@ function cssedit_layout()
 				molestie a, pulvinar et, mi. Nullam nibh sem, sollicitudin at,
 				congue id, malesuada non, lacus.</div>
 				<img alt="" id="SampleImageNormal"
-					src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageNormal.gif" style="display: none;"
+					src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageNormal.gif" style="display: none;"
 					/>
 					<img alt="" id="SampleImageRelativ"
-					src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageRelativ.gif" style="display: none;"
+					src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageRelativ.gif" style="display: none;"
 					/>
 					<img alt="" id="SampleImageAbsolute"
-					src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageAbsolute.gif" style="display: none;"
+					src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/SampleImageAbsolute.gif" style="display: none;"
 					/>
 					<img alt="" id="SampleImagePadding"
-					src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/PaddingAll.gif" style="display: none;" />
+					src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/PaddingAll.gif" style="display: none;" />
 					<img
-					alt="" id="SampleImageMargin" src="<?=$cssStyleOn['WEBROOT_IMAGE_PATH']?>/MarginAll.gif"
+					alt="" id="SampleImageMargin" src="<?php echo $cssStyleOn['WEBROOT_IMAGE_PATH']?>/MarginAll.gif"
 					style="display: none;" />
 
 <!--
@@ -3363,7 +3363,7 @@ function cssedit_layout()
 -->
 
 				<textarea id="CodeTextarea" rows="6" cols="50" onchange="readoutCode()">
-x { <?=get_magic_quotes_gpc()?stripslashes($_REQUEST['css_code']):$_REQUEST['css_code']?> }
+x { <?php echo get_magic_quotes_gpc()?stripslashes($_REQUEST['css_code']):$_REQUEST['css_code']?> }
 				</textarea>
 <!--
                 </td>

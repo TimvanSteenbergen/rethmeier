@@ -68,13 +68,13 @@
 
 </script> 
 
-<span class="pageHeading">Volgorde</span> <a href="index.php?page=cmsartikelen<? if ($_GET['id']) { echo "&id=".$_GET['id']; } ?>">terug naar artikelen</a><BR><BR> 
+<span class="pageHeading">Volgorde</span> <a href="index.php?page=cmsartikelen<?php if ($_GET['id']) { echo "&id=".$_GET['id']; } ?>">terug naar artikelen</a><BR><BR> 
 
 <form name="marquepick" method="POST"> 
 
 <input type="hidden" value="1" name="save">
 
-<input type="hidden" value="<? echo $_GET['id']; ?>" name="id">
+<input type="hidden" value="<?php echo $_GET['id']; ?>" name="id">
 
 <table cellspacing="0" cellpadding="0" style="font-family:Verdana;font-size:12">
 
@@ -88,7 +88,7 @@
 
 <td> <select name="dest" size="8" style="width:200px;border:1px solid #FFA107;background-color:#FFFFFF;" class="select">
 
-<? 
+<?php
 
 if ($_GET['id'] != "") {
 
@@ -100,11 +100,11 @@ if ($_GET['id'] != "") {
 
 }
 
-$exec = mysql_query($query);
+$exec = mysqli_query($query);
 
 echo $query;
 
-while ($row = mysql_fetch_array($exec)){
+while ($row = mysqli_fetch_array($exec)){
 
 	echo "<option value=\"".$row['CONTENT_ID']."\">".$row['content_name']."</option>";
 

@@ -1,4 +1,4 @@
-<?
+<?php
 
 include("fckeditor/fckeditor.php") ;
 

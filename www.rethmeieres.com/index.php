@@ -6,7 +6,9 @@ $default_language = "nl";
 
 include "functions/selection.php";
 include "translation/inc_translation.php";
+echo('érvoor'.$_SESSION['language']);
 include "config/inc_language.php";
+echo('erna'.$_SESSION['language']);
 include "config/inc_config.php";
 ?>
 
@@ -26,12 +28,12 @@ include "config/inc_config.php";
 </div>
 <div id="wrapper">
 	<div id="refresh">
-		<?
+		<?php
 			include 'ajax/inc_refresh.php';
 		?>
 	</div>
 	<div id="right">
-		<?
+		<?php
 			include 'inc_right.php';
 		?>
 	</div>

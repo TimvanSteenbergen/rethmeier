@@ -1,4 +1,4 @@
-<?
+<?php
 
 $module = new modules($_GET['m']);
 
@@ -48,16 +48,16 @@ function doRun($id, $data)
 //			$description = $_POST['DistSynopsis'][$title_key];
 			for($x = 0; $x < count($distribution_ids); $x++)
 			{
-				$result = mysql_query("SELECT * FROM product_description where product_id = '".$_GET['id']."' AND distribution_id = '".$distribution_ids[$x][0]."'");
-				if(mysql_num_rows($result) == 0 )
+				$result = mysqli_query("SELECT * FROM product_description where product_id = '".$_GET['id']."' AND distribution_id = '".$distribution_ids[$x][0]."'");
+				if(mysqli_num_rows($result) == 0 )
 				{
-					 mysql_query("INSERT INTO product_description (product_id, distribution_id) VALUES ('".$_GET['id']."', '".$distribution_ids[$x][0]."')");
+					 mysqli_query("INSERT INTO product_description (product_id, distribution_id) VALUES ('".$_GET['id']."', '".$distribution_ids[$x][0]."')");
 				}
 			}
 			
-			//while ($row = mysql_query)
+			//while ($row = mysqli_query)
 			//$query = "update product_description set product_title = '".$title_val."' , product_synopsis = '".$description."' WHERE product_id = '".$_GET['id']."' AND distribution_id = '".$title_key."'";
-			//mysql_query($query) or die(mysql_error());
+			//mysqli_query($query) or die(mysqli_error());
 		}
 
 		if($_GET['m'] == 'distributions')
@@ -66,14 +66,14 @@ function doRun($id, $data)
 
 			for($x = 0; $x < count($distribution_ids); $x++)
 			{
-				$result = mysql_query("SELECT * FROM product_description where product_id = '".$_GET['id']."' AND distribution_id = '".$distribution_ids[$x][0]."'");
-				if(mysql_num_rows($result) == 0 )
+				$result = mysqli_query("SELECT * FROM product_description where product_id = '".$_GET['id']."' AND distribution_id = '".$distribution_ids[$x][0]."'");
+				if(mysqli_num_rows($result) == 0 )
 				{
-					 mysql_query("INSERT INTO product_description (product_id, distribution_id) VALUES ('".$_GET['id']."', '".$distribution_ids[$x][0]."')");
+					 mysqli_query("INSERT INTO product_description (product_id, distribution_id) VALUES ('".$_GET['id']."', '".$distribution_ids[$x][0]."')");
 				}
 			}
 		}
-//		mysql_query("REPLACE INTO PRODUCTS_TO_CATEGORIES (PRODUCTS_ID, CATEGORIES_ID) VALUES ('".$_GET['id']."', '".$_POST['CATEGORY_ID']."' ) WHERE PRODUCTS_ID = '".$_GET['id']."'");
+//		mysqli_query("REPLACE INTO PRODUCTS_TO_CATEGORIES (PRODUCTS_ID, CATEGORIES_ID) VALUES ('".$_GET['id']."', '".$_POST['CATEGORY_ID']."' ) WHERE PRODUCTS_ID = '".$_GET['id']."'");
 
 	}
 

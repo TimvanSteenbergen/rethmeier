@@ -1,4 +1,4 @@
-<?
+<?php
 
 	include ("includes/application_top.php");
  
@@ -10,9 +10,9 @@ if ($_GET["act"] == 2) {
 	$sql = "UPDATE TBL_CONTENTS SET content_visible = 'T' WHERE CONTENT_ID = " . $_GET["id"];
 }
 	  
-$result = @mysql_query($sql); 
+$result = @mysqli_query($sql); 
  
-mysql_close ();
+mysqli_close ();
 $to = 'index.php?page=cmsartikelen';
 
 ?>

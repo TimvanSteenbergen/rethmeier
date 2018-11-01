@@ -18,11 +18,11 @@ global $cssStyleOn;
 function _layoutTabForTag($tag)
 	{
 ?>
-<div id="<?=$tag?>TagHolder" class="tagHolder">
-  <input type="hidden" value="<?=$tag?>" />
-  <!--<div style="display: none;" id="<?=$tag?>EntryTemplate"><span>class</span><span> { </span><input type="text" value="" name="" id="<?=$tag?>InputTemplate" style="width: 80%;"/><span> } </span><a href="#">edit</a><span>&nbsp;</span><a href="#">del</a></div>-->
-  <div style="display: none;" id="<?=$tag?>EntryTemplate" class="tagClassEntry"><label for="<?=$tag?>InputTemplate">class</label><span> { </span><input type="text" value="" name="" id="<?=$tag?>InputTemplate" /><span> } </span><a href="#">edit</a><span>&nbsp;</span><a href="#">del</a></div>
-  <b><?=$tag?></b> : <a href="#" onclick="javascript: appendNewCSSEntry('<?=$tag?>');">add new class</a>
+<div id="<?php echo $tag?>TagHolder" class="tagHolder">
+  <input type="hidden" value="<?php echo $tag?>" />
+  <!--<div style="display: none;" id="<?php echo $tag?>EntryTemplate"><span>class</span><span> { </span><input type="text" value="" name="" id="<?php echo $tag?>InputTemplate" style="width: 80%;"/><span> } </span><a href="#">edit</a><span>&nbsp;</span><a href="#">del</a></div>-->
+  <div style="display: none;" id="<?php echo $tag?>EntryTemplate" class="tagClassEntry"><label for="<?php echo $tag?>InputTemplate">class</label><span> { </span><input type="text" value="" name="" id="<?php echo $tag?>InputTemplate" /><span> } </span><a href="#">edit</a><span>&nbsp;</span><a href="#">del</a></div>
+  <b><?php echo $tag?></b> : <a href="#" onclick="javascript: appendNewCSSEntry('<?php echo $tag?>');">add new class</a>
   <hr />
 </div>
 <?
@@ -53,9 +53,9 @@ function _layoutTabImportExport()
   <hr />
   <p>
     <label for="import_css_file">local css file: </label>
-    <input type="file" id="import_css_file" name="import_css_file" <?=$cssStyleOn['PERMISSIONS']['IMPORT']?"":" disabled=\"disabled\""?> /><br />
+    <input type="file" id="import_css_file" name="import_css_file" <?php echo $cssStyleOn['PERMISSIONS']['IMPORT']?"":" disabled=\"disabled\""?> /><br />
     contents: <input type="radio" name="import_css_merge" value="merge" id="import_css_merge_merge" /><label for="import_css_merge_merge"> merge</label> or <input type="radio" name="import_css_merge" value="replace" id="import_css_merge_replace" checked="checked" /><label for="import_css_merge_replace"> replace</label><br />
-    <input type="submit" name="import" value="import" <?=$cssStyleOn['PERMISSIONS']['IMPORT']?"":"disabled=\"disabled\""?> />
+    <input type="submit" name="import" value="import" <?php echo $cssStyleOn['PERMISSIONS']['IMPORT']?"":"disabled=\"disabled\""?> />
   </p>
   <p class="note">Note: currently only tags of the form: TAG.CLASS { ... } with each definition in one line will be considered.</p>
 </div>
@@ -64,11 +64,11 @@ function _layoutTabImportExport()
   <p><b>Export</b>:</p>
   <hr />
   <p>
-    Export current stylesheet as complete <input type="submit" name="export_css" value="style.css" <?=$cssStyleOn['PERMISSIONS']['EXPORT']?"":" disabled=\"disabled\""?> />.
+    Export current stylesheet as complete <input type="submit" name="export_css" value="style.css" <?php echo $cssStyleOn['PERMISSIONS']['EXPORT']?"":" disabled=\"disabled\""?> />.
   </p>
   <p> &nbsp; </p>
   <p>
-    For integrating this stylesheet in <a href="http://www.fckeditor.net/" target="_blank">FCKEditor</a> use <input type="submit" name="export_fckstyles" value="fckstyles.xml" <?=$cssStyleOn['PERMISSIONS']['EXPORT']?"":"disabled=\"disabled\""?> />.
+    For integrating this stylesheet in <a href="http://www.fckeditor.net/" target="_blank">FCKEditor</a> use <input type="submit" name="export_fckstyles" value="fckstyles.xml" <?php echo $cssStyleOn['PERMISSIONS']['EXPORT']?"":"disabled=\"disabled\""?> />.
   </p>
 </div>
 <?

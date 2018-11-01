@@ -9,7 +9,7 @@
         $configuration_value = ($HTTP_POST_VARS['configuration_value']);
         $cID = ($HTTP_GET_VARS['cID']);
 
-        mysql_query("update configuration set configuration_value = '" . $configuration_value . "', last_modified = now() where configuration_id = '" . (int)$cID . "'");
+        mysqli_query("update configuration set configuration_value = '" . $configuration_value . "', last_modified = now() where configuration_id = '" . (int)$cID . "'");
 
         break;
     }
@@ -18,8 +18,8 @@
   $gID = (isset($HTTP_GET_VARS['gID'])) ? $HTTP_GET_VARS['gID'] : 1;
   $selectGroups = ($gID == 1 ? "configuration_group_id = '1' or configuration_group_id = '16' " : "configuration_group_id = '" . (int)$gID . "'");
 	
-  $cfg_group_query = mysql_query("select configuration_group_title from configuration_group where ".$selectGroups);
-  $cfg_group = mysql_fetch_array($cfg_group_query);
+  $cfg_group_query = mysqli_query("select configuration_group_title from configuration_group where ".$selectGroups);
+  $cfg_group = mysqli_fetch_array($cfg_group_query);
 ?>
 
 
@@ -45,8 +45,8 @@
                 <td class="dataTableHeadingContent"><?php echo "Waarde"; ?></td>
               </tr>
 <?php
-  $configuration_query = mysql_query("select configuration_id, configuration_title, configuration_value, use_function from configuration  where ".$selectGroups." order by configuration_title, sort_order");
-  while ($configuration = mysql_fetch_array($configuration_query)) {
+  $configuration_query = mysqli_query("select configuration_id, configuration_title, configuration_value, use_function from configuration  where ".$selectGroups." order by configuration_title, sort_order");
+  while ($configuration = mysqli_fetch_array($configuration_query)) {
     if (tep_not_null($configuration['use_function'])) {
       $use_function = $configuration['use_function'];
       if (ereg('->', $use_function)) {
@@ -64,8 +64,8 @@
     }
 
     if ((!isset($HTTP_GET_VARS['cID']) || (isset($HTTP_GET_VARS['cID']) && ($HTTP_GET_VARS['cID'] == $configuration['configuration_id']))) && !isset($cInfo) && (substr($action, 0, 3) != 'new')) {
-      $cfg_extra_query = mysql_query("select configuration_key, configuration_description, date_added, last_modified, use_function, set_function from configuration where configuration_id = '" . (int)$configuration['configuration_id'] . "'");
-      $cfg_extra = mysql_fetch_array($cfg_extra_query);
+      $cfg_extra_query = mysqli_query("select configuration_key, configuration_description, date_added, last_modified, use_function, set_function from configuration where configuration_id = '" . (int)$configuration['configuration_id'] . "'");
+      $cfg_extra = mysqli_fetch_array($cfg_extra_query);
 
       $cInfo_array = array_merge($configuration, $cfg_extra);
       $cInfo = new objectInfo($cInfo_array);

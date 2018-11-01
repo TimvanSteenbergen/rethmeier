@@ -23,7 +23,7 @@
     <td width="100%" valign="top"><table border="0" width="100%" cellspacing="0" cellpadding="2">
     	<tr><td>
    	<span class="pageHeading">Artikelen</span><BR><BR> 
-<?
+<?PHP
 /*	
 	<script language="javascript">initializeDocument()</script>
 	*/

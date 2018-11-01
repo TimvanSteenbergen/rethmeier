@@ -1,4 +1,4 @@
-<?
+<?php
 include("inc/db_conn.php");
 
 	if (isset($_GET['verwijder'])){
@@ -90,14 +90,14 @@ include("inc/db_conn.php");
 	}
 </script>
 </head>
-<span class="pageHeading">Bestanden</span> <font color=red><?=$_GET['melding']?></font><br><br>
+<span class="pageHeading">Bestanden</span> <font color=red><?php echo $_GET['melding']?></font><br><br>
 <form action="" method="post" enctype="multipart/form-data" name="form1">
    <input type="file" name="file" style="width:300">
    <input type="submit" name="Submit" value="Upload!">
 </form>
 
  
-<?
+<?PHP
 	include("bog.php");
 ?>
 </body>

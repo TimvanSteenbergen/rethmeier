@@ -1,14 +1,14 @@
-<? 
+<?php
   $error = false;
   
 if (isset($_POST['save'])){
 	$array = explode("|",$_POST['destItems']);
 	for ($x=1;$x<count($array)-1;$x++){
 		$query = "UPDATE TBL_CONTENTS SET content_seq = ".$x." WHERE CONTENT_ID = ".$array[$x];
-		$save = mysql_query($query);		
+		$save = mysqli_query($query);		
 	}
 	$to = "index.php?page=cmsartikelen";
-	?><META HTTP-EQUIV="REFRESH" CONTENT="0;URL=<? echo $to; ?>"><?
+	?><META HTTP-EQUIV="REFRESH" CONTENT="0;URL=<?php echo $to; ?>"><?php
 	return 0;
 }
 ?>
@@ -60,17 +60,17 @@ if (isset($_POST['save'])){
 <body>
 <form name="marquepick" method="POST"> 
 <input type="hidden" value="1" name="save">
-<input type="hidden" value="<? echo $_GET['ID']; ?>" name="ID">
+<input type="hidden" value="<?php echo $_GET['ID']; ?>" name="ID">
 <table cellspacing="1" cellpadding="2" bgcolor="#EEEEEE" style="font-family:Verdana;font-size:10">
 <tr bgcolor="#FFFFFF" class="dataTableHeadingRow" style="font-weight:bold;color:white"> 
 <td><B>Volgorde</td> 
 <td width=200><B>Wijzig</td> 
 </tr><tr bgcolor="#FFFFFF">
 <td> <select name="dest" size="20" style="width:230px;" class="select">
-<? 
+<?php
 $query = "SELECT * FROM TBL_CONTENTS WHERE content_type = ".$_GET['ID']." AND content_archive = 'F' AND content_parentid IS NULL ORDER BY content_seq";
-$exec = mysql_query($query);
-while ($row = mysql_fetch_array($exec)){
+$exec = mysqli_query($query);
+while ($row = mysqli_fetch_array($exec)){
 	echo "<option value=\"".$row['CONTENT_ID']."\">".$row['content_name']."</option>";
 }
 ?>

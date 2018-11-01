@@ -1,4 +1,4 @@
-<?
+<?php
 function schrijfTabel($id,$nodes,$home_nodes) {
 	global $teller;
 	global $ids;
@@ -10,7 +10,7 @@ function schrijfTabel($id,$nodes,$home_nodes) {
 	$aantal_cell++;
 	$f_nodes = $nodes;
 	$f_query = "SELECT tbl_contents.*, Count(tbl_visits.page) AS TOTALCOUNT FROM tbl_contents LEFT JOIN tbl_visits ON tbl_contents.CONTENT_ID = tbl_visits.page WHERE content_archive = 'F' AND content_parentid = ".$id." GROUP BY tbl_contents.CONTENT_ID order by content_seq";
-	$f_result = mysql_query($f_query);
+	$f_result = mysqli_query($f_query);
 	for ($i=0;$i<count($parent_div);$i++) {
 		if ($parent_div[$i]==$id) {
 			$display="inline";
@@ -22,7 +22,7 @@ function schrijfTabel($id,$nodes,$home_nodes) {
 	} else {
 		$ids .= ",".$id;
 	}
-	while($f_row = mysql_fetch_array($f_result)) {
+	while($f_row = mysqli_fetch_array($f_result)) {
 		$lan = $f_row['content_lang'];
 			if ($f_row["content_visible"] == 'T') {
 				$tab = "<td width=\"50\" align=\"center\"><img src=images/green_on.bmp border=0 align=absmiddle></a>&nbsp;<a title=\"Zet op niet actief\" href=index.php?page=cmsedit&id=".$f_row["CONTENT_ID"]."&act=2><img src=images/red_off.bmp border=0 align=absmiddle></a></td>";
@@ -37,8 +37,8 @@ function schrijfTabel($id,$nodes,$home_nodes) {
 		$content_name = stripslashes($content_name);
 		$f_rij_teller++;
 		$f_query2 = "SELECT * FROM tbl_contents WHERE content_archive = 'F' AND content_parentid = ".$f_row['CONTENT_ID'];
-		$f_result2 = mysql_query($f_query2);
-		if (mysql_num_rows($f_result2) > 0) {
+		$f_result2 = mysqli_query($f_query2);
+		if (mysqli_num_rows($f_result2) > 0) {
 			// parent heeft children
 			// while lus door children, functie weer aanroepen
 			echo("<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\">\n");
@@ -62,13 +62,13 @@ function schrijfTabel($id,$nodes,$home_nodes) {
 			//echo $home_nodes;
 			if ($home_nodes!="") {
 				$f_query2 = "SELECT tbl_contents.*, Count(tbl_visits.page) AS TOTALCOUNT FROM tbl_contents LEFT JOIN tbl_visits ON tbl_contents.CONTENT_ID = tbl_visits.page WHERE content_archive = 'F' AND content_parentid = ".$home_nodes." GROUP BY tbl_contents.CONTENT_ID order by content_seq";
-				$f_result2 = mysql_query($f_query2);
-				if (mysql_num_rows($f_result2)<2 || mysql_num_rows($f_result2) == $f_rij_teller) {
+				$f_result2 = mysqli_query($f_query2);
+				if (mysqli_num_rows($f_result2)<2 || mysqli_num_rows($f_result2) == $f_rij_teller) {
 					//$nodes_array[$aantal_cell-1] = "false";
 				}
 			}
 
-			if ($f_rij_teller == mysql_num_rows($f_result)) {
+			if ($f_rij_teller == mysqli_num_rows($f_result)) {
 				//$nodes_array[$aantal_cell-1] = "false";
 			}
 			for ($i=0;$i<$aantal_cell;$i++) {
@@ -86,7 +86,7 @@ function schrijfTabel($id,$nodes,$home_nodes) {
 				}
 			}
 			//echo $f_nodes;
-			if ($f_rij_teller != mysql_num_rows($f_result)) {
+			if ($f_rij_teller != mysqli_num_rows($f_result)) {
 				$f_nodes .= ",true";
 				if ($min!="") {
 					echo("\t\t<td width=\"21\"><a href=\"javascript:void(0);\" onClick=\"javascript:item(".$f_row['CONTENT_ID'].",'mid');\"><img src=\"images/ftv2mnode.gif\" id=\"plus".($f_row['CONTENT_ID'])."\" width=\"16\" height=\"22\" border=\"0\"></a></td>\n");
@@ -163,13 +163,13 @@ function schrijfTabel($id,$nodes,$home_nodes) {
 			//echo "rij_teller=".$f_rij_teller."<br>";
 			if ($home_nodes!="") {
 				$f_query2 = "SELECT tbl_contents.*, Count(tbl_visits.page) AS TOTALCOUNT FROM tbl_contents LEFT JOIN tbl_visits ON tbl_contents.CONTENT_ID = tbl_visits.page WHERE content_archive = 'F' AND content_parentid = ".$home_nodes." GROUP BY tbl_contents.CONTENT_ID order by content_seq";
-				$f_result2 = mysql_query($f_query2);
-				if (mysql_num_rows($f_result2)<2 || mysql_num_rows($f_result2) == $f_rij_teller) {
+				$f_result2 = mysqli_query($f_query2);
+				if (mysqli_num_rows($f_result2)<2 || mysqli_num_rows($f_result2) == $f_rij_teller) {
 					//$nodes_array[$aantal_cell-1] = "false";
 				}
 			}
 			
-			if ($f_rij_teller == mysql_num_rows($f_result)) {
+			if ($f_rij_teller == mysqli_num_rows($f_result)) {
 				//$nodes_array[$aantal_cell-1] = "false";
 			}
 			for ($i=0;$i<$aantal_cell;$i++) {
@@ -181,7 +181,7 @@ function schrijfTabel($id,$nodes,$home_nodes) {
 				}
 			}
 			//echo "<br>";
-			if ($f_rij_teller != mysql_num_rows($f_result)) {
+			if ($f_rij_teller != mysqli_num_rows($f_result)) {
 	    		echo("\t\t<td width=\"21\"><img src=\"images/ftv2node.gif\" width=\"16\" height=\"22\"></td>\n");
 			} else {
 					echo("\t\t<td width=\"21\"><img src=\"images/ftv2lastnode.gif\" width=\"16\" height=\"22\"></td>\n");

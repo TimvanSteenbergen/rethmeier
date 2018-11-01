@@ -318,10 +318,10 @@ class FormHandler {
             $sql = $this->query($query, __FILE__, __LINE__);
 
             // is the record found ?
-            if(mysql_num_rows($sql) == 1) {
+            if(mysqli_num_rows($sql) == 1) {
                 $this->dbGotData = true;
 
-                $row = mysql_fetch_array($sql, MYSQL_ASSOC);
+                $row = mysqli_fetch_array($sql, mysqli_ASSOC);
 
                 // strip data first, if needed
                 if(get_magic_quotes_runtime()) {
@@ -338,19 +338,19 @@ class FormHandler {
             }
         } else {
             // collect the field names
-            $fields = mysql_list_fields($this->dbName, $this->dbTable);
+            $fields = mysqli_list_fields($this->dbName, $this->dbTable);
 
             // put the fieldnames in the array
             if(!$fields) {
-                if(mysql_error() == '') {
+                if(mysqli_error() == '') {
                       $this->error('Use of the MySQL option but no connection available!', E_USER_WARNING, __FILE__, __LINE__);
                 } else {
-                    $this->error('MySQL error: ('.mysql_errno() .') '. mysql_error(), E_USER_WARNING, __FILE__, __LINE__);
+                    $this->error('MySQL error: ('.mysqli_errno() .') '. mysqli_error(), E_USER_WARNING, __FILE__, __LINE__);
                 }
                    $this->useDB = false;
             } else {
-                  for ($i = 0; $i < mysql_num_fields($fields); $i++) {
-                       $this->dbFields[mysql_field_name($fields, $i)] = null;
+                  for ($i = 0; $i < mysqli_num_fields($fields); $i++) {
+                       $this->dbFields[mysqli_field_name($fields, $i)] = null;
                 }
             }
         }
@@ -358,8 +358,8 @@ class FormHandler {
 
     // Private: function which wil run the query's
     function Query($query, $file = 'unknown', $line = 0) {
-        $sql = mysql_query($query) or
-        $this->error('MySQL Error: ('.mysql_errno().')'. mysql_error() ." in $file at line $line<br />\n<br />\nQuery: $query", E_USER_ERROR, __FILE__, __LINE__);
+        $sql = mysqli_query($query) or
+        $this->error('MySQL Error: ('.mysqli_errno().')'. mysqli_error() ." in $file at line $line<br />\n<br />\nQuery: $query", E_USER_ERROR, __FILE__, __LINE__);
 
         return $sql;
     }
@@ -1619,7 +1619,7 @@ class FormHandler {
     // Private: generate "where" clause
     function GetWhereClause() {
         if(!is_array($this->editId) && sizeof($this->dbPrKey) == 1) {
-            return $this->dbPrKey[0] ." = '".mysql_escape_string($this->editId)."'";
+            return $this->dbPrKey[0] ." = '".mysqli_escape_string($this->editId)."'";
         } elseif(is_array($this->editId) && count($this->dbPrKey) <= count($this->editId)) {
             // notice if to many paramaters are given
             if(count($this->dbPrKey) < count($this->editId)) {
@@ -1858,7 +1858,7 @@ class FormHandler {
                         // if the field is not an upload field ... (the value can be an manual entered value!)
                         if(!$this->arrayKeyExists($field, $this->uploadFields) || $this->arrayKeyExists($field, $this->addValues)) {
                             $value = is_array($value) ? implode(", ", $value) : $value;
-                            $queryValues[$field] = !in_array($field, $this->SQLFields)? "'". mysql_escape_string($value) ."'": $value;
+                            $queryValues[$field] = !in_array($field, $this->SQLFields)? "'". mysqli_escape_string($value) ."'": $value;
                         }
                     }
                 }
@@ -1906,7 +1906,7 @@ class FormHandler {
                     $sql = $this->query($query, __FILE__, __LINE__);
 
                 // get the record id
-                $this->recordId = ($this->editForm) ? $this->editId[0] : ((isset($query) && $this->useDB) ? mysql_insert_id() : "Database functions are not used...");
+                $this->recordId = ($this->editForm) ? $this->editId[0] : ((isset($query) && $this->useDB) ? mysqli_insert_id() : "Database functions are not used...");
 
                 // run the onSaved function
                 if($this->OnSaved) {

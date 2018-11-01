@@ -1,4 +1,4 @@
-<?PHP
+<?php
 
 class upload
 {
@@ -49,19 +49,19 @@ class upload
 
 	function install()
 	{
-		$result = mysql_query("SELECT * FROM configuration_group where configuration_group_title = 'Upload module'");
-		if(mysql_num_rows($result) < 1)
+		$result = mysqli_query("SELECT * FROM configuration_group where configuration_group_title = 'Upload module'");
+		if(mysqli_num_rows($result) < 1)
 		{
 			$sql = "INSERT INTO configuration_group (configuration_group_title, configuration_group_description, visible) VALUES ('Upload module', 'Upload configuration', '1')";
-			mysql_query($sql);
+			mysqli_query($sql);
 
-			$insert_id = mysql_insert_id();
+			$insert_id = mysqli_insert_id();
 			$sql = array();
 			$sql[] = "INSERT INTO configuration (configuration_group_id, configuration_key, configuration_title, configuration_value, configuration_description) VALUES ('".$insert_id."', 'UPLOAD_DIR', 'Upload folder', '/upload', 'The folder uploaded files are placed.')";
 			$sql[] = "INSERT INTO configuration (configuration_group_id, configuration_key, configuration_title, configuration_value, configuration_description) VALUES ('".$insert_id."', 'UPLOAD_RESIZE_WIDTH', 'Upload image resize width', '200', 'The width of the generated thumbnails.')";
 			$sql[] = "INSERT INTO configuration (configuration_group_id, configuration_key, configuration_title, configuration_value, configuration_description) VALUES ('".$insert_id."', 'UPLOAD_RESIZE_HEIGHT', 'Upload image resize height', '', 'The height of the generated thumbnails.')";
 			for($x = 0; $x < count($sql); $x++)
-				mysql_query($sql[$x])or die(mysql_error().$sql[$x]);
+				mysqli_query($sql[$x])or die(mysqli_error().$sql[$x]);
 		
 			echo "<span class=\"pageHeading\">Module installed</span><BR><BR>";
 		}

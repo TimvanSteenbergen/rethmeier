@@ -1,4 +1,4 @@
-<?
+<?php
 // zet alle globals voor het menu
 // 0 is niet beschikbaar
 // 1 is beschikbaar

@@ -12,9 +12,9 @@
     $cfg_groups = '';
     $cfg_groups .= '<a href="index.php?page=adminusers&selected_box=configuration" class="menuBoxContentLink">Administratie gebruikers</a><br>';
 
-    $configuration_groups_query = mysql_query("select configuration_group_id as cgID, configuration_group_title as cgTitle from configuration_group where visible = '1' order by configuration_group_title");
+    $configuration_groups_query = mysqli_query("select configuration_group_id as cgID, configuration_group_title as cgTitle from configuration_group where visible = '1' order by configuration_group_title");
     $eerste = true;
-/*	while ($configuration_groups = mysql_fetch_array($configuration_groups_query)) 
+/*	while ($configuration_groups = mysqli_fetch_array($configuration_groups_query)) 
 	{			
 		$cfg_groups .= '<a href="index.php?page=configuration&gID='.$configuration_groups['cgID'].'&selected_box=configuration" class="menuBoxContentLink">' . $configuration_groups['cgTitle'] . '</a><br>';
     }

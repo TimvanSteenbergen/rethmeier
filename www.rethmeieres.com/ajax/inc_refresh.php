@@ -1,9 +1,9 @@
-<?
+<?php
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
 include_once "../functions/selection.php";
-//include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/translation/inc_translation.php";
+include "/storage/mijndomein/users/143904/public/sites/www.rethmeieres.com/translation/inc_translation.php";
 include "../config/inc_language.php";
 include "../config/inc_config.php";
 ?>
@@ -16,15 +16,15 @@ include "../config/inc_config.php";
 		</div>
 
         <?php $language = (isset($_SESSION['language'])?$_SESSION['language']:'nl');echo $language; ?>
-		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=home');"><img src="gfx/buttons/<?=selection("home", "true").$language?>_home.jpg" border="0" /></div>
-		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=werkgebied');"><img src="gfx/buttons/<?=selection("werkgebied").$language?>_werkgebied.jpg" border="0" /></div>
-		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=werkwijze');"><img src="gfx/buttons/<?=selection("werkwijze").$language?>_werkwijze.jpg" border="0" /></div>
-		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=kandidaten');"><img src="gfx/buttons/<?=selection("kandidaten").$language?>_kandidaten.jpg" border="0" /></div>
-		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=opdrachtgevers');"><img src="gfx/buttons/<?=selection("opdrachtgevers").$language?>_opdrachtgevers.jpg" border="0" /></div>
-		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=referenties');"><img src="gfx/buttons/<?=selection("referenties").$language?>_referenties.jpg" border="0" /></div>
-		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=biografie');"><img src="gfx/buttons/<?=selection("biografie").$language?>_biografie.jpg" border="0" /></div>
-		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=pers');"><img src="gfx/buttons/<?=selection("pers").$language?>_pers.jpg" border="0" /></div>
-		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=contact');"><img src="gfx/buttons/<?=selection("contact").$language?>_contact.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=home');"><img src="gfx/buttons/<?php echo "selected_".$language?>_home.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=werkgebied');"><img src="gfx/buttons/<?php echo "selected_".$language ?>_werkgebied.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=werkwijze');"><img src="gfx/buttons/<?php echo "selected_".$language?>_werkwijze.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=kandidaten');"><img src="gfx/buttons/<?php echo "selected_".$language?>_kandidaten.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=opdrachtgevers');"><img src="gfx/buttons/<?php echo "selected_".$language?>_opdrachtgevers.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=referenties');"><img src="gfx/buttons/<?php echo "selected_".$language?>_referenties.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=biografie');"><img src="gfx/buttons/<?php echo "selected_".$language?>_biografie.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=pers');"><img src="gfx/buttons/<?php echo "selected_".$language?>_pers.jpg" border="0" /></div>
+		<div class="menu_item" onclick="ajaxget('refresh', 'ajax/inc_refresh.php?p=contact');"><img src="gfx/buttons/<?php echo "selected_".$language?>_contact.jpg" border="0" /></div>
 	
 		<div id="language">
 			<div class="language_btn" onclick="location.href='index.php?language=nl';"><img src="gfx/nl.jpg" border="0" /></div>
@@ -36,30 +36,27 @@ include "../config/inc_config.php";
 </div>
 
 <div id="center">
-	<?
+	<?php
 		if(!isset($_GET['p']))
 		{
 			include '../inc_home.php';
 //Bugfix: Omdat deze include niet meer inc_home.php toont, is hier een kopie van inc_home.php neergezet.
-?>
-<?
 $string = "SELECT * FROM `tbl_contents` WHERE `content_id` = '2'";
 $query = mysqli_query($con, $string) or die(mysqli_error());
 $result = mysqli_fetch_assoc($query) or die(mysqli_error());
 ?>
 
 <div id="pictures">
-	<div class="pic_left"><img src="images/<?=$result['pic_left']?>" border="0" width="120" height="120" /></div>
-	<div class="pic_center"><img src="images/<?=$result['pic_center']?>" border="0" width="120" height="120" /></div>
-	<div class="pic_right"><img src="images/<?=$result['pic_right']?>" border="0" width="120" height="120" /></div>
+	<div class="pic_left"><img src="images/<?php echo $result['pic_left']?>" border="0" width="120" height="120" /></div>
+	<div class="pic_center"><img src="images/<?php echo $result['pic_center']?>" border="0" width="120" height="120" /></div>
+	<div class="pic_right"><img src="images/<?php echo $result['pic_right']?>" border="0" width="120" height="120" /></div>
 </div>
 <div id="content">
-	<div class="titel"><?=$result['content_title_'.$_SESSION['language']]?></div>
-	<div class="text"><?=$result['content_'.$_SESSION['language']]?></div>
+	<div class="titel"><?php echo $result['content_title_'.$_SESSION['language']]?></div>
+	<div class="text"><?php echo $result['content_'.$_SESSION['language']]?></div>
 </div><?php
 //Einde Bugfix: Omdat deze include niet meer inc_home.php toont, is hier een kopie van inc_home.php neergezet.
 		}else{
-			// echo('p is: ' . $_GET['p']);
 			include '../inc_'.$_GET['p'].'.php';
 		}
 	?>

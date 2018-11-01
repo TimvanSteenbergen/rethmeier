@@ -11,8 +11,8 @@
 */
 
 $query = "SELECT * FROM admin_user_rights LEFT JOIN admin_items ON admin_user_rights.ITEM_ID = admin_items.ITEM_ID WHERE USER_ID = ".$_COOKIE['adminuserid']." ORDER BY admin_items.ITEM_ID";
-$exec = mysql_query($query);
-while ($row = mysql_fetch_array($exec)){
+$exec = mysqli_query($query);
+while ($row = mysqli_fetch_array($exec)){
 	$filenameArr = explode("?", $row['ITEM_INCLUDE']);
 	$filename = $filenameArr[0];
 	

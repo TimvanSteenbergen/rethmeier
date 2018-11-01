@@ -40,13 +40,13 @@ function layoutButtonClick(group,id)
 		// reset all buttons
 	switch(group)
 		{
-<? foreach($layout_tabs as $tab_group => $tabs) { ?>
-		case '<?=$tab_group?>':
-<? foreach($tabs as $tab) { ?>
-			document.getElementById("<?=$tab_group?>_<?=$tab['id']?>Button").className = "buttonNormal";
-<? } ?>
+<?php foreach($layout_tabs as $tab_group => $tabs) { ?>
+		case '<?php echo $tab_group?>':
+<?php foreach($tabs as $tab) { ?>
+			document.getElementById("<?php echo $tab_group?>_<?php echo $tab['id']?>Button").className = "buttonNormal";
+<?php } ?>
 			break;
-<? } ?>
+<?php } ?>
 		}
 
 		// mark current button as active
@@ -89,13 +89,13 @@ function layoutShowRightTab(group,id)
 	{
 	switch(group)
 		{
-<? foreach($layout_tabs as $tab_group => $tabs) { ?>
-		case '<?=$tab_group?>':
-<? foreach($tabs as $tab) { ?>
-			document.getElementById("<?=$tab_group?>_<?=$tab['id']?>Tab").style.display = "none";
-<? } ?>
+<?php foreach($layout_tabs as $tab_group => $tabs) { ?>
+		case '<?php echo $tab_group?>':
+<?php foreach($tabs as $tab) { ?>
+			document.getElementById("<?php echo $tab_group?>_<?php echo $tab['id']?>Tab").style.display = "none";
+<?php } ?>
 			break;
-<? } ?>
+<?php } ?>
 		}
 	document.getElementById(group+'_'+id+"Tab").style.display = "";
 	}
@@ -113,8 +113,8 @@ function layoutOutButtons($group)
 	foreach($layout_tabs[$group] as $tab)
 		{
 ?>
-                            <li class="buttonNormal" onclick="layoutButtonClick('<?=$group?>','<?=$tab['id']?>');" onmouseover="layoutButtonOver('<?=$group?>','<?=$tab['id']?>')" onmouseout="layoutButtonOut('<?=$group?>','<?=$tab['id']?>')" id="<?=$group?>_<?=$tab['id']?>Button">
-                               &nbsp;<?=$tab['title']?>&nbsp;
+                            <li class="buttonNormal" onclick="layoutButtonClick('<?php echo $group?>','<?php echo $tab['id']?>');" onmouseover="layoutButtonOver('<?php echo $group?>','<?php echo $tab['id']?>')" onmouseout="layoutButtonOut('<?php echo $group?>','<?php echo $tab['id']?>')" id="<?php echo $group?>_<?php echo $tab['id']?>Button">
+                               &nbsp;<?php echo $tab['title']?>&nbsp;
                             </li>
 
 <?
@@ -132,8 +132,8 @@ function layoutOutTabs($group)
 	foreach($layout_tabs[$group] as $tab)
 		{
 ?>
-                     <div class="tabContent" style="display: none;" id="<?=$group?>_<?=$tab['id']?>Tab">
-<? $tab['layoutTabFunc'](); ?>
+                     <div class="tabContent" style="display: none;" id="<?php echo $group?>_<?php echo $tab['id']?>Tab">
+<?php $tab['layoutTabFunc'](); ?>
                      </div>
 <?
 		}

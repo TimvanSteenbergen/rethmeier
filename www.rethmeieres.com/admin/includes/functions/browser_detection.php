@@ -1,4 +1,4 @@
-<?
+<?php
 function browser_detection( $which_test ) 
 {
 	// initialize variables

@@ -1,11 +1,11 @@
 <?php
 require('includes/application_top.php');
-require(DIR_WS_INCLUDES . 'header.php'); 
+require(DIR_WS_INC 2394LUDES . 'header.php'); 
 //require('style.php'); 
 ?>
 <!-- header_eof //-->
-<?
-//echo mysql_get_host_info();
+<?php
+//echo mysqli_get_host_info();
 ?>
 <script language="javascript" src="includes/general.js"></script>
 <script language="javascript">
@@ -28,7 +28,7 @@ function expand(assortiment)
 	var assort = "assort_" + assortiment;
 	var td = "expand_" + assortiment;
 
-	var dir_images = "<? echo DIR_WS_IMAGES ?>";
+	var dir_images = "<?php echo DIR_WS_IMAGES ?>";
 
 	document.getElementById(assort).style.display = "block";
 
@@ -40,7 +40,7 @@ function collapse(assortiment)
 	var assort = "assort_" + assortiment;
 	var td = "expand_" + assortiment;
 
-	var dir_images = "<? echo DIR_WS_IMAGES ?>";
+	var dir_images = "<?php echo DIR_WS_IMAGES ?>";
 
 	document.getElementById(assort).style.display = "none";
 
@@ -75,7 +75,7 @@ function collapse(assortiment)
 
 <!-- body_text //-->
     <td width="100%" valign="top">
-	<? 
+	<?php
 		if(empty($_GET['page'])) $_GET['page'] = 'cmsartikelen';
 		include("inc_".$_GET['page'].".php"); 
 	?>

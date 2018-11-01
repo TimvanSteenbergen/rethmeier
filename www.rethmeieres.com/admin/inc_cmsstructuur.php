@@ -8,7 +8,7 @@ if (isset($_POST['save'])){
 
 		$query = "UPDATE tbl_contents SET content_seq = ".$x." WHERE CONTENT_ID = ".$array[$x];
 
-		$save = mysql_query($query);		
+		$save = mysqli_query($query);		
 
 	}
 

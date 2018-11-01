@@ -1,4 +1,4 @@
-<?
+<?php
 echo "<span class=\"pageHeading\">Tekst animaties</span><BR><BR>";
 
 $_GET['id'] = 1;

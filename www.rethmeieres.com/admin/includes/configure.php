@@ -34,7 +34,6 @@
 	
 	define('DB_SERVER', 'db.rethmeieres.com'); // eg, localhost - should not be empty for productive servers
 	define('DB_SERVER_USERNAME', 'md143904db126857');
-	define('DB_SERVER_PASSWORD', 'jBkQxqxm');
 	define('DB_SERVER_PASSWORD', 'cg0pizVH');
 	define('DB_DATABASE', 'md143904db126857');
 

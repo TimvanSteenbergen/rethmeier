@@ -7,7 +7,7 @@ class distributions
 	function distributions($aParent)
 	{
 		$this->parent = $aParent;
-		$this->db_transcoder = mysql_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD);
+		$this->db_transcoder = mysqli_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD);
 	}
 
 	function addOutputFormat()
@@ -54,9 +54,9 @@ class distributions
 	function removeOutputFormat()
 	{
 
-		//$db_transcoder = mysql_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
-		mysql_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysql_error());
-		mysql_query("DELETE FROM OUTPUTFORMAT where id = '".$_GET['id']."'");
+		//$db_transcoder = mysqli_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
+		mysqli_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysqli_error());
+		mysqli_query("DELETE FROM OUTPUTFORMAT where id = '".$_GET['id']."'");
 		echo "<span class=\"pageHeading\">Output Format removed.</span><BR><BR>";
 
 		$this->showOutputFormats();
@@ -76,11 +76,11 @@ class distributions
 		}
 
 
-		//$db_transcoder = mysql_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
-		mysql_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysql_error());
+		//$db_transcoder = mysqli_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
+		mysqli_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysqli_error());
 
-		$result = mysql_query("select * from customers WHERE srcFolder = '".TRANSCODER_SRC_FOLDER."' ") or die(mysql_error());
-		$row = mysql_fetch_array($result);
+		$result = mysqli_query("select * from customers WHERE srcFolder = '".TRANSCODER_SRC_FOLDER."' ") or die(mysqli_error());
+		$row = mysqli_fetch_array($result);
 
 		if (isset($_GET['search']) && $_GET['search'] != ""){
 			if (ereg(" ", $_GET['search'])){
@@ -94,8 +94,8 @@ class distributions
 		}else{
 			$query = "SELECT * FROM OUTPUTFORMAT  ORDER BY NAAM";
 		}
-		$exec = mysql_query($query)or die(mysql_error());
-		$totaalAantal = mysql_num_rows($exec);
+		$exec = mysqli_query($query)or die(mysqli_error());
+		$totaalAantal = mysqli_num_rows($exec);
 
 		echo "<span class=\"pageHeading\">Output Formaten (".$totaalAantal.")</span><BR><BR>";
 
@@ -129,11 +129,11 @@ class distributions
 			}else{
 				$query = "SELECT * FROM OUTPUTFORMAT ORDER BY ".$orderby." ".$order." LIMIT ".$begin.",".$aantal;
 			}
-			$exec = mysql_query($query);
+			$exec = mysqli_query($query);
 			echo "<TABLE cellpadding=2 cellspacing=0 style=\"font-family:Verdana\" width=100%>";
 			echo "<TR class=\"dataTableHeadingRow\"><TD class=\"dataTableHeadingContent\">Naam</TD><TD class=\"dataTableHeadingContent\">Width</TD><TD class=\"dataTableHeadingContent\">height</TD><TD class=\"dataTableHeadingContent\">Extension</TD><TD class=\"dataTableHeadingContent\">Bitrate</TD><TD class=\"dataTableHeadingContent\">&nbsp</TD></TR>";
-			if (mysql_num_rows($exec) > 0){
-				while ($row = mysql_fetch_array($exec)){
+			if (mysqli_num_rows($exec) > 0){
+				while ($row = mysqli_fetch_array($exec)){
 					extract($row);
 						echo "<TR onMouseOver=\"this.bgColor='#C0C0C0';this.style.cursor='hand';this.style.color='white';\" onMouseOut=\"this.bgColor='white';this.style.color='black';\" style=\"font-size:10\"><TD><a href=new_output_formats.php?id=".$id.">".$naam."</a></TD><TD>".$width."</TD><TD>".$height."</TD><TD>".$format."</TD><TD>".$bitrate."</TD><TD align=right>[ <a href=index.php?page=".$_REQUEST['page']."&m=".$_REQUEST['m']."&mf=editOutputFormat&id=".$id."><img src=".DIR_WS_IMAGES."/cms/format_edit.gif border='0' alt='Formaat wijzigen' title='Formaat wijzigen'></a> &nbsp; <a href=# onClick=\"confirm_del('index.php?page=".$_REQUEST['page']."&m=".$_REQUEST['m']."&mf=removeOutputFormat&id=".$id."','".addslashes($naam)."'); return false\"><img src=".DIR_WS_IMAGES."/cms/format_remove.gif border='0' alt='Format verwijderen' title='Formaat verwijderen'></a> ]</TD></TR>";
 				}
@@ -146,33 +146,33 @@ class distributions
 		?>
 		<BR>
 		<form name="myform" method="get" action="">
-		<input type=hidden name=page value="<? echo $_GET['page']; ?>">
-		<input type=hidden name=m value="<? echo $_GET['m']; ?>">
-		<input type=hidden name=mf value="<? echo $_GET['mf']; ?>">
-		<input type=hidden name=search value="<? echo $_GET['search']; ?>">
-		<input type=hidden name=orderby value="<? echo $_GET['orderby']; ?>">
-		<input type=hidden name=catid value="<? echo $_GET['catid']; ?>">
-		<? 
+		<input type=hidden name=page value="<?php echo $_GET['page']; ?>">
+		<input type=hidden name=m value="<?php echo $_GET['m']; ?>">
+		<input type=hidden name=mf value="<?php echo $_GET['mf']; ?>">
+		<input type=hidden name=search value="<?php echo $_GET['search']; ?>">
+		<input type=hidden name=orderby value="<?php echo $_GET['orderby']; ?>">
+		<input type=hidden name=catid value="<?php echo $_GET['catid']; ?>">
+		<?php 
 		if (isset($_GET['order']))
 		{
 		?>
-			<input type=hidden name=order value="<? echo $_GET['order']; ?>">
-		<? 
+			<input type=hidden name=order value="<?php echo $_GET['order']; ?>">
+		<?php 
 		}
 		else
 		{ 
 		?>
 			<input type=hidden name=order value="DESC">
-		<? 
+		<?php 
 		} 
 		?>
 
 		<font face=verdana size=1>Toon <select class="fields" name=recs OnChange="updateBoxes(myform)">
-			<option value="5" <? if ($_GET['recs'] == 5) echo "selected"?>> 5</option>
-			<option value="10" <? if ($_GET['recs'] == 10) echo "selected"?>> 10</option>
-			<option value="20" <? if ($_GET['recs'] == 20) echo "selected"?>> 20</option>
-			<option value="50" <? if ($_GET['recs'] == 50) echo "selected"?>> 50</option>
-			<option value="100" <? if ($_GET['recs'] == 100) echo "selected"?>> 100</option>
+			<option value="5" <?php if ($_GET['recs'] == 5) echo "selected"?>> 5</option>
+			<option value="10" <?php if ($_GET['recs'] == 10) echo "selected"?>> 10</option>
+			<option value="20" <?php if ($_GET['recs'] == 20) echo "selected"?>> 20</option>
+			<option value="50" <?php if ($_GET['recs'] == 50) echo "selected"?>> 50</option>
+			<option value="100" <?php if ($_GET['recs'] == 100) echo "selected"?>> 100</option>
 		</select> resultaten per pagina. &nbsp;
 	
 	
@@ -180,7 +180,7 @@ class distributions
 		<input class="buttons" type=submit value="Toon">
 		</form>
 		<script language="JavaScript">
-		NUM_RECORDS = <?=$totaalAantal ?>;
+		NUM_RECORDS = <?php echo $totaalAantal ?>;
 		function updateBoxes(theFormObj)
 			{
 				var selectedRecs = theFormObj.recs.options[theFormObj.recs.selectedIndex].value;
@@ -192,11 +192,11 @@ class distributions
 				for(var j=0 ; j<numpages ; j++)   {
 					theFormObj.pagina.options[j] = new Option(j+1,j+1);
 				}
-				<? if (!isset($_GET['page'])){ ?>
+				<?php if (!isset($_GET['page'])){ ?>
 					theFormObj.pagina.selectedIndex = 0;
-				<? }else{ ?>
-					theFormObj.pagina.selectedIndex = <? echo $_GET['pagina'] - 1; ?>;
-				<? } ?>
+				<?php }else{ ?>
+					theFormObj.pagina.selectedIndex = <?php echo $_GET['pagina'] - 1; ?>;
+				<?php } ?>
 			}
 		</script>
 		<script> 
@@ -239,9 +239,9 @@ class distributions
 		$form->textfield("Doelmap", "destFolder", "", "50");
 
 		$query = "SELECT * FROM OUTPUTFORMAT";
-		$exec = mysql_query($query);
+		$exec = mysqli_query($query);
 		$teller = 0;
-		while ($row = mysql_fetch_array($exec))
+		while ($row = mysqli_fetch_array($exec))
 		{
 			$valueArray[$row['id']] = $row['naam'];	
 		}
@@ -307,8 +307,8 @@ class distributions
 
 	function remove()
 	{		 
-		mysql_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysql_error());
-		mysql_query("DELETE FROM customers where id = '".$_GET['id']."'");
+		mysqli_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysqli_error());
+		mysqli_query("DELETE FROM customers where id = '".$_GET['id']."'");
 		echo "<span class=\"pageHeading\">Distribution removed.</span><BR><BR>";
 
 		$this->show();
@@ -316,8 +316,8 @@ class distributions
 
 	function setActief()
 	{
-		//$db_transcoder = mysql_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
-		mysql_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysql_error());
+		//$db_transcoder = mysqli_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
+		mysqli_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysqli_error());
 
 		if ($_GET["act"] == 2) 
 		{
@@ -326,7 +326,7 @@ class distributions
 		{
 			$sql = "UPDATE customers SET active = '1' WHERE id = " . $_GET["id"];
 		}
-		$result = mysql_query($sql); 
+		$result = mysqli_query($sql); 
 
 		$this->show();
 	}
@@ -334,14 +334,14 @@ class distributions
 	function contents()
 	{
 		$distributions = Array();
-		//$db_transcoder = mysql_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
-		mysql_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysql_error());
-		$dist_result = mysql_query("SELECT * FROM customers where active = '1' AND srcFolder = '".TRANSCODER_SRC_FOLDER."'");
-		while($dist_row = mysql_fetch_array($dist_result))
+		//$db_transcoder = mysqli_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
+		mysqli_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysqli_error());
+		$dist_result = mysqli_query("SELECT * FROM customers where active = '1' AND srcFolder = '".TRANSCODER_SRC_FOLDER."'");
+		while($dist_row = mysqli_fetch_array($dist_result))
 		{
 			$distributions[] = array($dist_row['id'], $dist_row['name']);
 		}
-		mysql_select_db(DB_DATABASE);
+		mysqli_select_db(DB_DATABASE);
 		//print_r($distributions);
 		return $distributions;
 		
@@ -349,13 +349,13 @@ class distributions
 
 	function install()
 	{
-		$result = mysql_query("SELECT * FROM configuration_group where configuration_group_title = 'Distributions module'");
-		if(mysql_num_rows($result) < 1)
+		$result = mysqli_query("SELECT * FROM configuration_group where configuration_group_title = 'Distributions module'");
+		if(mysqli_num_rows($result) < 1)
 		{
 			$sql = "REPLACE INTO configuration_group (configuration_group_title, configuration_group_description, visible) VALUES ('Distributions module', 'Distributions configuration', '1')";
-			mysql_query($sql);
+			mysqli_query($sql);
 
-			$insert_id = mysql_insert_id();
+			$insert_id = mysqli_insert_id();
 			$sql = array();
 
 
@@ -373,7 +373,7 @@ class distributions
 			$sql[] = "REPLACE INTO configuration (configuration_group_id, configuration_key, configuration_title, configuration_value, configuration_description) VALUES ('".$insert_id."', 'MEDIASERVER_USERNAME', 'Mediaserver username', '', 'The ftp username for the mediaserver.')";
 			$sql[] = "REPLACE INTO configuration (configuration_group_id, configuration_key, configuration_title, configuration_value, configuration_description) VALUES ('".$insert_id."', 'MEDIASERVER_PASSWORD', 'Mediaserver password', '', 'The ftp password for the mediaserver.')";
 			for($x = 0; $x < count($sql); $x++)
-				mysql_query($sql[$x])or die(mysql_error().$sql[$x]);
+				mysqli_query($sql[$x])or die(mysqli_error().$sql[$x]);
 		
 			echo "<span class=\"pageHeading\">Module installed</span><BR><BR>";
 		}
@@ -397,11 +397,11 @@ class distributions
 		}
 
 
-		//$db_transcoder = mysql_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
-		mysql_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysql_error());
+		//$db_transcoder = mysqli_connect(MYRIAD_DATABASE_HOSTNAME, MYRIAD_DATABASE_USERNAME, MYRIAD_DATABASE_PASSWORD); 
+		mysqli_select_db(MYRIAD_DATABASE_NAME, $this->db_transcoder)or die(mysqli_error());
 
-		$result = mysql_query("select * from customers WHERE srcFolder = '".TRANSCODER_SRC_FOLDER."' ") or die(mysql_error());
-		$row = mysql_fetch_array($result);
+		$result = mysqli_query("select * from customers WHERE srcFolder = '".TRANSCODER_SRC_FOLDER."' ") or die(mysqli_error());
+		$row = mysqli_fetch_array($result);
 
 		if (isset($_GET['search']) && $_GET['search'] != ""){
 			if (ereg(" ", $_GET['search'])){
@@ -415,8 +415,8 @@ class distributions
 		}else{
 			$query = "SELECT * FROM customers WHERE srcFolder = '".TRANSCODER_SRC_FOLDER."' ORDER BY NAME";
 		}
-		$exec = mysql_query($query)or die(mysql_error());
-		$totaalAantal = mysql_num_rows($exec);
+		$exec = mysqli_query($query)or die(mysqli_error());
+		$totaalAantal = mysqli_num_rows($exec);
 
 		echo "<span class=\"pageHeading\">Distributies (".$totaalAantal.")</span><BR><BR>";
 
@@ -449,21 +449,21 @@ class distributions
 		}else{
 			$query = "SELECT * FROM customers WHERE srcFolder = '".TRANSCODER_SRC_FOLDER."' ORDER BY ".$orderby." ".$order." LIMIT ".$begin.",".$aantal;
 		}
-		$exec = mysql_query($query) or die($query);
+		$exec = mysqli_query($query) or die($query);
 		echo "<TABLE cellpadding=2 cellspacing=0 style=\"font-family:Verdana\" width=100%>";
 		echo "<TR class=\"dataTableHeadingRow\"><TD class=\"dataTableHeadingContent\"><a href=index.php?page=".$_REQUEST['page']."&m=".$_REQUEST['m']."&f=show&orderby=NAME&order=".$order."&search=".$_GET['search']."&page=".$_GET['page']."&recs=".$_GET['recs']." style=\"font-weight:bold;color:white\">Naam</a></TD><TD class=\"dataTableHeadingContent\">output</TD><TD class=\"dataTableHeadingContent\">bitrate</TD><TD class=\"dataTableHeadingContent\">Kosten</TD><TD class=\"dataTableHeadingContent\">DRM</TD><TD class=\"dataTableHeadingContent\">actief</TD><TD class=\"dataTableHeadingContent\">&nbsp</TD></TR>";
-		if (mysql_num_rows($exec) > 0){
-			while ($row = mysql_fetch_array($exec))
+		if (mysqli_num_rows($exec) > 0){
+			while ($row = mysqli_fetch_array($exec))
 			{
 				extract($row);
 
 				$formatquery = "SELECT * FROM OUTPUTFORMAT WHERE ID = '".$outputFormatId."'";
-				$formats = mysql_query($formatquery);
-				$format = mysql_fetch_array($formats);
+				$formats = mysqli_query($formatquery);
+				$format = mysqli_fetch_array($formats);
 
 			//	$paymentquery = "SELECT * FROM SHOP_PAYMENT_CATEGORIES WHERE PAYMENT_CATEGORY_ID = '".$paymentCategoryId."'";
-			//	$payments = mysql_query($paymentquery)or die(mysql_error());
-			//	$payment = mysql_fetch_array($payments);
+			//	$payments = mysqli_query($paymentquery)or die(mysqli_error());
+			//	$payment = mysqli_fetch_array($payments);
 
 				if ($active == '1') {
 					$tabgreen = "<img src=".DIR_WS_IMAGES."/cms/green_active.gif border=0>";
@@ -498,32 +498,32 @@ class distributions
 		?>
 		<BR>
 		<form name="myform" method="get" action="">
-		<input type=hidden name=page value="<? echo $_GET['page']; ?>">
-		<input type=hidden name=m value="<? echo $_GET['m']; ?>">
-		<input type=hidden name=search value="<? echo $_GET['search']; ?>">
-		<input type=hidden name=orderby value="<? echo $_GET['orderby']; ?>">
-		<input type=hidden name=catid value="<? echo $_GET['catid']; ?>">
-		<? 
+		<input type=hidden name=page value="<?php echo $_GET['page']; ?>">
+		<input type=hidden name=m value="<?php echo $_GET['m']; ?>">
+		<input type=hidden name=search value="<?php echo $_GET['search']; ?>">
+		<input type=hidden name=orderby value="<?php echo $_GET['orderby']; ?>">
+		<input type=hidden name=catid value="<?php echo $_GET['catid']; ?>">
+		<?php 
 		if (isset($_GET['order']))
 		{
 		?>
-			<input type=hidden name=order value="<? echo $_GET['order']; ?>">
-		<? 
+			<input type=hidden name=order value="<?php echo $_GET['order']; ?>">
+		<?php 
 		}
 		else
 		{ 
 		?>
 			<input type=hidden name=order value="DESC">
-		<? 
+		<?php 
 		} 
 		?>
 
 		<font face=verdana size=1>Toon <select class="fields" name=recs OnChange="updateBoxes(myform)">
-			<option value="5" <? if ($_GET['recs'] == 5) echo "selected"?>> 5</option>
-			<option value="10" <? if ($_GET['recs'] == 10) echo "selected"?>> 10</option>
-			<option value="20" <? if ($_GET['recs'] == 20) echo "selected"?>> 20</option>
-			<option value="50" <? if ($_GET['recs'] == 50) echo "selected"?>> 50</option>
-			<option value="100" <? if ($_GET['recs'] == 100) echo "selected"?>> 100</option>
+			<option value="5" <?php if ($_GET['recs'] == 5) echo "selected"?>> 5</option>
+			<option value="10" <?php if ($_GET['recs'] == 10) echo "selected"?>> 10</option>
+			<option value="20" <?php if ($_GET['recs'] == 20) echo "selected"?>> 20</option>
+			<option value="50" <?php if ($_GET['recs'] == 50) echo "selected"?>> 50</option>
+			<option value="100" <?php if ($_GET['recs'] == 100) echo "selected"?>> 100</option>
 		</select> resultaten per pagina. &nbsp;
 	
 	
@@ -531,7 +531,7 @@ class distributions
 		<input class="buttons" type=submit value="Toon">
 		</form>
 		<script language="JavaScript">
-		NUM_RECORDS = <?=$totaalAantal ?>;
+		NUM_RECORDS = <?php echo $totaalAantal ?>;
 		function updateBoxes(theFormObj)
 			{
 				var selectedRecs = theFormObj.recs.options[theFormObj.recs.selectedIndex].value;
@@ -543,11 +543,11 @@ class distributions
 				for(var j=0 ; j<numpages ; j++)   {
 					theFormObj.pagina.options[j] = new Option(j+1,j+1);
 				}
-				<? if (!isset($_GET['page'])){ ?>
+				<?php if (!isset($_GET['page'])){ ?>
 					theFormObj.pagina.selectedIndex = 0;
-				<? }else{ ?>
-					theFormObj.pagina.selectedIndex = <? echo $_GET['pagina'] - 1; ?>;
-				<? } ?>
+				<?php }else{ ?>
+					theFormObj.pagina.selectedIndex = <?php echo $_GET['pagina'] - 1; ?>;
+				<?php } ?>
 			}
 		</script>
 		<script> 

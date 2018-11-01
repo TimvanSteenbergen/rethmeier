@@ -1,4 +1,4 @@
-		<?
+		<?php
 		$myhtml = "<head>";
 		$myhtml = $myhtml . "<style>";
 		$myhtml = $myhtml . "			A:link { color: #000000; font-size:10; font-family: Verdana, Arial, Helvetica, sans-serif; text-decoration: none; }\n";

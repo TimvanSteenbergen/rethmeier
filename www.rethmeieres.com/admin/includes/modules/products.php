@@ -85,10 +85,10 @@ class products
 	if (isset($_GET['id']))
 	{
 		$query = "SELECT source_file,  TITLE FROM products WHERE products.product_id = '".$_GET['id']."'";
-		$exec2 = mysql_query($query);
+		$exec2 = mysqli_query($query);
 
-		$row2 = mysql_fetch_array($exec2);
-		mysql_data_seek($exec2, 0);
+		$row2 = mysqli_fetch_array($exec2);
+		mysqli_data_seek($exec2, 0);
 	
 
 		$popupHtml = "";
@@ -175,7 +175,7 @@ class products
 	function remove()
 	{
 		echo "<span class=\"pageHeading\">Product verwijderd</span><BR>";
-		mysql_query("UPDATE products set ARCHIVE = 'T' WHERE PRODUCT_ID = '".$_GET['id']."'");
+		mysqli_query("UPDATE products set ARCHIVE = 'T' WHERE PRODUCT_ID = '".$_GET['id']."'");
 		$this->show();
 	}
 
@@ -188,7 +188,7 @@ class products
 		{
 			$sql = "UPDATE products SET VISIBLE = 'T' WHERE PRODUCT_ID = " . $_GET["id"];
 		}
-		$result = mysql_query($sql); 
+		$result = mysqli_query($sql); 
 
 		$this->show();
 	}
@@ -216,8 +216,8 @@ class products
 		}else{
 			$query = "SELECT * FROM products LEFT JOIN categories ON products.CATEGORY_ID = categories.categories_id WHERE products.ARCHIVE = 'F' ".$catwhere;
 		}
-		$exec = mysql_query($query);
-		$totaalAantal = mysql_num_rows($exec);
+		$exec = mysqli_query($query);
+		$totaalAantal = mysqli_num_rows($exec);
 
 		echo "<span class=\"pageHeading\">Producten (".$totaalAantal.")</span><BR><BR>";
 
@@ -258,7 +258,7 @@ class products
 			$query = "SELECT *,  DATE_FORMAT(AVAILABLE_FROM, '%d-%m-%Y') AS FROM_DATE, DATE_FORMAT(AVAILABLE_UNTIL, '%d-%m-%Y') AS UNTIL_DATE FROM products  LEFT JOIN categories ON products.CATEGORY_ID = categories.categories_id WHERE products.ARCHIVE = 'F' ".$catwhere." group by products.PRODUCT_ID ORDER BY ".$orderby." ".$order." LIMIT ".(int)$begin.",".(int)$aantal;
 		}
 
-		$exec = mysql_query($query) or die($query);
+		$exec = mysqli_query($query) or die($query);
 		echo "<TABLE cellpadding=2 cellspacing=0 style=\"font-family:Verdana\" width=100%>";
 		echo "<TR class=\"dataTableHeadingRow\">";
 		echo "<TD class=\"dataTableHeadingContent\"><a href=\"producten.php?page=".$_GET['page']."&recs=".$_GET['recs']."&orderby=TITLE&order=".$order."&search=".$_GET['search']."&catid=".$_GET['catid']."\" style=\"font-weight:bold;color:white\">Titel</a></TD>";
@@ -279,9 +279,9 @@ class products
 			}
 		}
 		echo "<TD class=\"dataTableHeadingContent\">&nbsp</TD></TR>";
-		if (mysql_num_rows($exec)>0)
+		if (mysqli_num_rows($exec)>0)
 		{
-			while ($row = mysql_fetch_array($exec))
+			while ($row = mysqli_fetch_array($exec))
 			{
 				extract($row);
 				
@@ -322,9 +322,9 @@ class products
 
 					for($x = 0; $x < count($distribution_ids); $x++)
 					{
-						$statusresult = mysql_query("SELECT * FROM product_description WHERE PRODUCT_ID = '".$PRODUCT_ID."' AND DISTRIBUTION_ID = '".$distribution_ids[$x][0]."'")or die(mysql_error());
-						//echo mysql_num_rows($statusresult);
-						if($statusrow = mysql_fetch_array($statusresult))
+						$statusresult = mysqli_query("SELECT * FROM product_description WHERE PRODUCT_ID = '".$PRODUCT_ID."' AND DISTRIBUTION_ID = '".$distribution_ids[$x][0]."'")or die(mysqli_error());
+						//echo mysqli_num_rows($statusresult);
+						if($statusrow = mysqli_fetch_array($statusresult))
 						{
 							switch($statusrow['product_status'])
 							{
@@ -353,32 +353,32 @@ class products
 		?>
 		<BR>
 		<form name="myform" method="get" action="">
-		<input type=hidden name=page value="<? echo $_GET['page']; ?>">
-		<input type=hidden name=m value="<? echo $_GET['m']; ?>">
-		<input type=hidden name=search value="<? echo $_GET['search']; ?>">
-		<input type=hidden name=orderby value="<? echo $_GET['orderby']; ?>">
-		<input type=hidden name=catid value="<? echo $_GET['catid']; ?>">
-		<? 
+		<input type=hidden name=page value="<?php echo $_GET['page']; ?>">
+		<input type=hidden name=m value="<?php echo $_GET['m']; ?>">
+		<input type=hidden name=search value="<?php echo $_GET['search']; ?>">
+		<input type=hidden name=orderby value="<?php echo $_GET['orderby']; ?>">
+		<input type=hidden name=catid value="<?php echo $_GET['catid']; ?>">
+		<?php 
 		if (isset($_GET['order']))
 		{
 		?>
-			<input type=hidden name=order value="<? echo $_GET['order']; ?>">
-		<? 
+			<input type=hidden name=order value="<?php echo $_GET['order']; ?>">
+		<?php 
 		}
 		else
 		{ 
 		?>
 			<input type=hidden name=order value="DESC">
-		<? 
+		<?php 
 		} 
 		?>
 
 		<font face=verdana size=1>Toon <select class="fields" name=recs OnChange="updateBoxes(myform)">
-			<option value="5" <? if ($_GET['recs'] == 5) echo "selected"?>> 5</option>
-			<option value="10" <? if ($_GET['recs'] == 10) echo "selected"?>> 10</option>
-			<option value="20" <? if ($_GET['recs'] == 20) echo "selected"?>> 20</option>
-			<option value="50" <? if ($_GET['recs'] == 50) echo "selected"?>> 50</option>
-			<option value="100" <? if ($_GET['recs'] == 100) echo "selected"?>> 100</option>
+			<option value="5" <?php if ($_GET['recs'] == 5) echo "selected"?>> 5</option>
+			<option value="10" <?php if ($_GET['recs'] == 10) echo "selected"?>> 10</option>
+			<option value="20" <?php if ($_GET['recs'] == 20) echo "selected"?>> 20</option>
+			<option value="50" <?php if ($_GET['recs'] == 50) echo "selected"?>> 50</option>
+			<option value="100" <?php if ($_GET['recs'] == 100) echo "selected"?>> 100</option>
 		</select> resultaten per pagina. &nbsp;
 	
 	
@@ -386,7 +386,7 @@ class products
 		<input class="buttons" type=submit value="Toon">
 		</form>
 		<script language="JavaScript">
-		NUM_RECORDS = <?=$totaalAantal ?>;
+		NUM_RECORDS = <?php echo $totaalAantal ?>;
 		function updateBoxes(theFormObj)
 			{
 				var selectedRecs = theFormObj.recs.options[theFormObj.recs.selectedIndex].value;
@@ -398,11 +398,11 @@ class products
 				for(var j=0 ; j<numpages ; j++)   {
 					theFormObj.pagina.options[j] = new Option(j+1,j+1);
 				}
-				<? if (!isset($_GET['page'])){ ?>
+				<?php if (!isset($_GET['page'])){ ?>
 					theFormObj.pagina.selectedIndex = 0;
-				<? }else{ ?>
-					theFormObj.pagina.selectedIndex = <? echo $_GET['pagina'] - 1; ?>;
-				<? } ?>
+				<?php }else{ ?>
+					theFormObj.pagina.selectedIndex = <?php echo $_GET['pagina'] - 1; ?>;
+				<?php } ?>
 			}
 		</script>
 		<script> 

@@ -51,9 +51,9 @@ function __browser_reload(frame)
 
 function browserForceReload()
 	{
-<? foreach($browserReloadFiles as $id => $file) { ?>
-	__browser_reload('browserReloadFrame<?=$id?>');
-<? } ?>
+<?php foreach($browserReloadFiles as $id => $file) { ?>
+	__browser_reload('browserReloadFrame<?php echo $id?>');
+<?php } ?>
 	}
 <?
 	}
@@ -65,7 +65,7 @@ function browserReloadOutContent()
 	foreach($browserReloadFiles as $id => $file)
 		{
 ?>
-<iframe id="browserReloadFrame<?=$id?>" class="browserReloadFrame" src="<?=$file?>" width="775" height="200"></iframe>
+<iframe id="browserReloadFrame<?php echo $id?>" class="browserReloadFrame" src="<?php echo $file?>" width="775" height="200"></iframe>
 <?
 		}
 	}
@@ -76,11 +76,11 @@ function outReloadTest()
 <html>
 <head>
 <script type="text/javascript">
-<? browserReloadOutScripts() ?>
+<?php browserReloadOutScripts() ?>
 </script>
 </head>
 <body onLoad="browserForceReload();">
-<? browserReloadOutContent() ?>
+<?php browserReloadOutContent() ?>
 <p>
 <a href="javascript: browserForceReload();">reload</a>
 </p>
